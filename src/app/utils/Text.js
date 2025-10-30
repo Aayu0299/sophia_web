@@ -4,3 +4,5 @@ export const TEXT = {
   FOOTER: "Footer",
   NOT_FOUND: "404 Page Not Found",
 };
+
+

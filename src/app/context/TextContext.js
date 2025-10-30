@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext } from "react";
-import { TEXT } from "../utils/ Text";
+import { TEXT } from "../utils/Text";
 
 const TextContext = createContext(TEXT);
 

@@ -1,5 +1,6 @@
 "use client";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LoaderProvider } from "@/app/context/LoaderContext";
 import Footer from "./Footer";
 import Header from "./Header";
