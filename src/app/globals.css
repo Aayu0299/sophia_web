@@ -3,6 +3,12 @@
 :root {
   --darkblue: #004396;
   --overlay: #00000090;
+  --black: #000000;
+  --lightBlack: #333333;
+  --white: #ffffff;
+  --lightgray: #f1f1f1;
+  --orange: #fa8072;
+  --darkgray: #626262;
 }
 
 @theme inline {
@@ -23,4 +29,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+}
+
+.section-container {
+  @apply w-full max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-8;
 }

@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import ReduxProvider from "../redux/reduxProvider";
-import { TextProvider } from "../context/TextContext";
 import CommonLayout from "../components/layout/CommonLayout";
 
 const inter = Inter({
@@ -20,9 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <ReduxProvider>
-          <TextProvider>
-            <CommonLayout>{children}</CommonLayout>
-          </TextProvider>
+          <CommonLayout>{children}</CommonLayout>
         </ReduxProvider>
       </body>
     </html>
