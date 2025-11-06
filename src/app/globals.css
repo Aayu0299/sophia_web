@@ -9,6 +9,9 @@
   --lightgray: #f1f1f1;
   --orange: #fa8072;
   --darkgray: #626262;
+  --grayshade: #828282;
+  --bordergray: #a5a5a5;
+  --lightblue: #f4faff;
 }
 
 @theme inline {

@@ -6,15 +6,42 @@ import { navItems } from "@/app/utils/MockData";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname("");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Detect if user has scrolled beyond the hero section height (like 80px)
+      if (window.scrollY > 80) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="absolute top-6 w-full z-50 flex justify-center ">
-      <div className="section-container flex items-center justify-between h-16 rounded-[9px] bg-white px-6 shadow-md mx-5! ">
+    <header
+      className={`${
+        isScrolled
+          ? "fixed top-0 left-0 w-full bg-white shadow-md rounded-none transition-all duration-300 ease-in-out"
+          : "absolute top-6 left-0 w-full flex justify-center transition-all duration-300 ease-in-out"
+      } z-50`}
+    >
+      <div
+        className={`section-container flex items-center justify-between h-16 px-6 ${
+          isScrolled
+            ? "max-w-full bg-white"
+            : "max-w-[1200px] bg-white rounded-[9px]"
+        }`}
+      >
         {/* Logo */}
         <Link href={ROUTES.HOME} className="flex items-center">
           <Image

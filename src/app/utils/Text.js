@@ -10,4 +10,9 @@ export const TEXT = {
   TERMS: "Terms & Conditions",
   WELCOME: "Welcome to ",
   AI_PLATFORM: "The AI platform redefining connected care.",
+  READ_MORE: "Read More",
+  PATIENT: "Patient",
+  FAMILY: "Family",
+  DOCTOR: "Doctor",
+  CAREGIVER: "Caregiver",
 };
