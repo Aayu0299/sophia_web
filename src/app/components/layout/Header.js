@@ -10,72 +10,74 @@ import { useState } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname("");
+  const pathname = usePathname();
 
   return (
-    <header className="absolute top-6 w-full z-50 flex justify-center ">
-      <div className="section-container flex items-center justify-between h-16 rounded-[9px] bg-white px-6 shadow-md mx-5! ">
-        {/* Logo */}
-        <Link href={ROUTES.HOME} className="flex items-center">
-          <Image
-            src={images.logo}
-            alt="Logo"
-            width={100}
-            height={50}
-            priority
-            className="w-full max-w-[100px]! h-auto cursor-pointer"
-          />
-        </Link>
+    <header className="absolute top-6 w-full z-50 flex justify-center">
+      <div className="w-full flex flex-col items-center bg-white rounded-[9px] shadow-md px-6 mx-4 md:mx-[60px] lg:mx-32 transition-all duration-300">
+        <div className="flex items-center justify-between w-full h-16">
+          <Link href={ROUTES.HOME} className="flex items-center">
+            <Image
+              src={images.logo}
+              alt="Logo"
+              width={100}
+              height={50}
+              priority
+              className="w-full max-w-[100px] h-auto cursor-pointer"
+            />
+          </Link>
 
-        {/* Desktop Menu */}
-        <nav className="hidden sm:flex items-center gap-6 font-bold text-[16px]">
-          {navItems().map((item) => {
-            const isActive = pathname === item.link;
-            return (
-              <div
-                key={item.id}
-                className="relative flex flex-col items-center"
-              >
-                <Link
-                  href={item.link}
-                  className={`transition ${
-                    isActive
-                      ? "text-(--darkblue)"
-                      : "text-(--darkgray) hover:text-(--darkblue)"
-                  }`}
+          {/* Desktop Menu */}
+          <nav className="hidden sm:flex items-center gap-6 font-bold text-[16px]">
+            {navItems().map((item) => {
+              const isActive = pathname === item.link;
+              return (
+                <div
+                  key={item.id}
+                  className="relative flex flex-col items-center"
                 >
-                  {item.label}
-                </Link>
+                  <Link
+                    href={item.link}
+                    className={`transition ${
+                      isActive
+                        ? "text-(--darkblue)"
+                        : "text-(--darkgray) hover:text-(--darkblue)"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                  {isActive && (
+                    <div className="absolute -bottom-6 w-2 h-2 bg-(--darkblue) rounded-t-full" />
+                  )}
+                </div>
+              );
+            })}
+          </nav>
 
-                {/* Blue bottom dot positioned at the header bottom */}
-                {isActive && (
-                  <div className="absolute -bottom-6 w-2 h-2 bg-(--darkblue) rounded-t-full" />
-                )}
-              </div>
-            );
-          })}
-        </nav>
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="sm:hidden text-(--darkblue) focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <Icons.FiX size={26} /> : <Icons.FiMenu size={26} />}
+          </button>
+        </div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="sm:hidden text-(--darkblue) focus:outline-none"
+        {/* Mobile Menu (inside same header box, smooth expand) */}
+        <div
+          className={`sm:hidden w-full transition-all duration-300 overflow-hidden ${
+            menuOpen ? "max-h-64 opacity-100 pb-4" : "max-h-0 opacity-0"
+          }`}
         >
-          {menuOpen ? <Icons.FiX size={26} /> : <Icons.FiMenu size={26} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      {menuOpen && (
-        <div className="sm:hidden bg-(--white) mx-4 transition-all duration-300">
-          <nav className="flex flex-col gap-4 py-4 px-6 font-bold text-[16px] text-(--darkgray)">
+          <nav className="flex flex-col gap-4 font-bold text-[16px] text-(--darkgray) pt-2">
             {navItems().map((item) => {
               const isActive = pathname === item.link;
               return (
                 <Link
                   key={item.id}
                   href={item.link}
-                  className={`transition flex items-center gap-2 ${
+                  className={`transition ${
                     isActive
                       ? "text-(--darkblue)"
                       : "text-(--darkgray) hover:text-(--darkblue)"
@@ -88,7 +90,7 @@ export default function Header() {
             })}
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

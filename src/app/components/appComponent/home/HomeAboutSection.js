@@ -39,8 +39,8 @@ export default function HomeAboutSection() {
         </div>
       </div>
 
-      <div className="section-container sm:py-12 py-4 grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:pl-0!">
-        <div className="order-2 md:order-1">
+      <div className="section-container sm:py-12 py-4 grid grid-cols-1 md:grid-cols-2 items-center gap-10 ">
+        <div className="order-2 md:order-1 xl:ml-[-36px]!">
           <Image
             src={images.about}
             alt="patient-care"

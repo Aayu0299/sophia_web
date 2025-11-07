@@ -100,17 +100,15 @@ export default function LoginForm({ role }) {
             </div>
           </div>
 
-          <div>
-            <div className="">
-              <Image
-                src={imageSrc}
-                alt={`${role} login`}
-                width={600}
-                height={600}
-                className="w-full xl:h-[740px] h-auto object-cover rounded-bl-[38px] rounded-tl-[38px]"
-                priority
-              />
-            </div>
+          <div className="hidden md:block">
+            <Image
+              src={imageSrc}
+              alt={`${role} login`}
+              width={600}
+              height={600}
+              className="w-full xl:h-[740px] h-auto object-cover rounded-bl-[38px] rounded-tl-[38px]"
+              priority
+            />
           </div>
         </div>
       </form>
