@@ -1,6 +1,119 @@
 "use client";
+import { useForm } from "react-hook-form";
+import InputField from "@/app/components/ui/InputField";
+import { validationRules } from "@/app/utils/Validation";
+import Button from "../ui/Button";
+import Link from "next/link";
+import Image from "next/image";
+import { images } from "@/app/utils/Images";
+import { TEXT } from "@/app/utils/Text";
+import { handleSpace } from "@/app/utils/InputFunction";
 
 export default function LoginForm({ role }) {
-  console.log("Params received:", role);
-  return <form className=""></form>;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: "onSubmit",
+    defaultValues: { username: "", password: "" },
+  });
+
+  const roleImages = {
+    patient: images.patientLogin,
+    family: images.familyLogin,
+    doctor: images.doctorLogin,
+    caregiver: images.caregiverLogin,
+  };
+
+  // fallback to default if role not matched
+  const imageSrc = roleImages[role];
+
+  const onSubmit = async (values) => {
+    console.log("login submit", { role, values });
+  };
+
+  return (
+    <div className="min-h-screen bg-(--lightblue) py-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="w-full max-w-[450px] m-auto px-4 xl:px-0">
+            <div>
+              <h1 className="font-black text-[30px] sm:text-[40px] lg:text-[61px] text-center text-(--lightBlack)">
+                {TEXT.WELCOME}
+              </h1>
+              <p className="mt-1 font-black text-[30px] sm:text-[40px] lg:text-[61px] text-center">
+                <span className="text-(--orange) uppercase">
+                  {TEXT.SOPHIA} !
+                </span>
+              </p>
+              <p className="mt-4 font-normal text-[21px] sm:text-[24px] text-center text-(--darkgray)">
+                {TEXT.SIGN_ACCOUNT}
+              </p>
+
+              <div className="mt-8 space-y-5 ">
+                <InputField
+                  label={TEXT.USERNAME}
+                  name="username"
+                  placeholder={TEXT.ENTER_USERNAME}
+                  register={register}
+                  validationRules={validationRules.username}
+                  error={errors.username?.message}
+                  onKeyDown={handleSpace}
+                />
+
+                <InputField
+                  label={TEXT.PASSWORD}
+                  name="password"
+                  type="password"
+                  placeholder={TEXT.ENTER_PASSWORD}
+                  register={register}
+                  validationRules={validationRules.password}
+                  error={errors.password?.message}
+                  onKeyDown={handleSpace}
+                />
+
+                <div className="text-end">
+                  <Link
+                    href="#"
+                    className="text-(--orange) font-semibold text-[14px] hover:underline"
+                  >
+                    {TEXT.FORGOT_PASSWORD}
+                  </Link>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="rounded-[100px]"
+                >
+                  {TEXT.SIGN_IN}
+                </Button>
+
+                <p className="font-semibold text-[15px] text-(--darkgray) text-center">
+                  {TEXT.DONT_ACCOUNT}{" "}
+                  <Link href="#" className="text-(--darkblue) hover:underline">
+                    {TEXT.CREATE_ACCOUNT}
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="">
+              <Image
+                src={imageSrc}
+                alt={`${role} login`}
+                width={600}
+                height={600}
+                className="w-full xl:h-[740px] h-auto object-cover rounded-bl-[38px] rounded-tl-[38px]"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 }

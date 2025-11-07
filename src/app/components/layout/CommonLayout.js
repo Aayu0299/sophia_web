@@ -8,7 +8,7 @@ export default function CommonLayout({ children }) {
     <div className="flex flex-col min-h-screen ">
       <LoaderProvider>
         <main className="grow overflow-x-hidden">{children}</main>
-        <Footer />
+        {/* <Footer /> */}
         <ToastContainer />
       </LoaderProvider>
     </div>

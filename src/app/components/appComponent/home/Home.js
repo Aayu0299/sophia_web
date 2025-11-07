@@ -1,6 +1,7 @@
 import HomeSlider from "./HomeSlider";
 import HomeAboutSection from "./HomeAboutSection";
 import HomeRoleSection from "./HomeRoleSection";
+import Footer from "../../layout/Footer";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
 
       {/* home page about section */}
       <HomeAboutSection />
+      <Footer />
     </div>
   );
 }
