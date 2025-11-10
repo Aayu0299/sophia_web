@@ -3,6 +3,7 @@ import HomeAboutSection from "./HomeAboutSection";
 import HomeRoleSection from "./HomeRoleSection";
 import Footer from "../../layout/Footer";
 
+//------function for home page----------
 export default function Home() {
   return (
     <div>

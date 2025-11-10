@@ -7,6 +7,7 @@ import { Icons } from "@/app/utils/Icons";
 import { TEXT } from "@/app/utils/Text";
 import { ROUTES } from "@/app/utils/Constant";
 
+//------function for home page role section----------
 export default function HomeRoleSection() {
   const router = useRouter();
   const [activeRole, setActiveRole] = useState(null);

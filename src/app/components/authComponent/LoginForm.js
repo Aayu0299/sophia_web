@@ -8,7 +8,9 @@ import Image from "next/image";
 import { images } from "@/app/utils/Images";
 import { TEXT } from "@/app/utils/Text";
 import { handleSpace } from "@/app/utils/InputFunction";
+import { ROUTES } from "@/app/utils/Constant";
 
+//---------function for login form-------------
 export default function LoginForm({ role }) {
   const {
     register,
@@ -29,9 +31,7 @@ export default function LoginForm({ role }) {
   // fallback to default if role not matched
   const imageSrc = roleImages[role];
 
-  const onSubmit = async (values) => {
-    console.log("login submit", { role, values });
-  };
+  const onSubmit = async (formData) => {};
 
   return (
     <div className="min-h-screen bg-(--lightblue) py-5">
@@ -75,7 +75,7 @@ export default function LoginForm({ role }) {
 
                 <div className="text-end">
                   <Link
-                    href="#"
+                    href={`/${role}/${ROUTES.FORGOT_PASSWORD}`}
                     className="text-(--orange) font-semibold text-[14px] hover:underline"
                   >
                     {TEXT.FORGOT_PASSWORD}

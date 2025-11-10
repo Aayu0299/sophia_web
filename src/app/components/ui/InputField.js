@@ -14,6 +14,7 @@ export default function InputField({
   autoComplete,
   onKeyDown,
   className = "",
+  watch,
   ...rest
 }) {
   return (
@@ -41,6 +42,9 @@ export default function InputField({
             ? register(name, {
                 ...validationRules,
                 ...sanitizeHtmlTags(),
+                validate: validationRules.validate
+                  ? (value) => validationRules.validate(value, { watch })
+                  : undefined,
               })
             : {})}
           {...rest}

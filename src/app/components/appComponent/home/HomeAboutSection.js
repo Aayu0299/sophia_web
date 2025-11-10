@@ -2,6 +2,7 @@ import { images } from "@/app/utils/Images";
 import { TEXT } from "@/app/utils/Text";
 import Image from "next/image";
 
+//------function for home page about section----------
 export default function HomeAboutSection() {
   return (
     <div>

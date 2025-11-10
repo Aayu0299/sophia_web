@@ -10,7 +10,7 @@ export default function Button({
       type={type ? type : "button"}
       onClick={onClick}
       disabled={disabled}
-      className={`w-full bg-(--darkblue) font-semibold text-[24px] text-(--white) hover:opacity-90 py-3 cursor-pointer ${className}`}
+      className={`w-full bg-(--darkblue) font-semibold text-[18px] sm:text-[24px] text-(--white) hover:opacity-90 py-3 cursor-pointer block ${className}`}
     >
       {children}
     </button>

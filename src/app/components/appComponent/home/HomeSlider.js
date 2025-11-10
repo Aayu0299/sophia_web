@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { TEXT } from "@/app/utils/Text";
 import Header from "../../layout/Header";
 
+//------function for home page slider section----------
 export default function HomeSlider() {
   const slides = useMemo(() => [
     {
