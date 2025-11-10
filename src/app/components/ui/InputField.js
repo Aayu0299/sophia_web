@@ -36,7 +36,7 @@ export default function InputField({
           disabled={disabled}
           autoComplete={autoComplete}
           onKeyDown={onKeyDown}
-          className={`w-full rounded-xl [box-shadow:0px_2px_6px_0px_#0000002E] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
+          className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
           {...(register
             ? register(name, {
                 ...validationRules,
