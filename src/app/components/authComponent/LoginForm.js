@@ -34,7 +34,7 @@ export default function LoginForm({ role }) {
   const onSubmit = async (formData) => {};
 
   return (
-    <div className="min-h-screen bg-(--lightblue) py-5">
+    <div className="min-h-screen bg-(--lightblue)">
       <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="w-full max-w-[450px] m-auto px-4 xl:px-0">
@@ -92,7 +92,10 @@ export default function LoginForm({ role }) {
 
                 <p className="font-semibold text-[15px] text-(--darkgray) text-center">
                   {TEXT.DONT_ACCOUNT}{" "}
-                  <Link href="#" className="text-(--darkblue) hover:underline">
+                  <Link
+                    href={`/${role}/${ROUTES.SIGNUP}`}
+                    className="text-(--darkblue) hover:underline"
+                  >
                     {TEXT.CREATE_ACCOUNT}
                   </Link>
                 </p>
@@ -100,15 +103,17 @@ export default function LoginForm({ role }) {
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <Image
-              src={imageSrc}
-              alt={`${role} login`}
-              width={600}
-              height={600}
-              className="w-full xl:h-[740px] h-auto object-cover rounded-bl-[38px] rounded-tl-[38px]"
-              priority
-            />
+          <div className="hidden md:flex items-center justify-center">
+            <div className="w-full h-[calc(100vh-40px)] mt-5 mb-5">
+              <Image
+                src={imageSrc}
+                alt={`${role} login`}
+                width={600}
+                height={600}
+                className="w-full h-full object-cover rounded-bl-[38px] rounded-tl-[38px]"
+                priority
+              />
+            </div>
           </div>
         </div>
       </form>
