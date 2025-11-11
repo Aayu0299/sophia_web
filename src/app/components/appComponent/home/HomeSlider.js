@@ -11,13 +11,13 @@ export default function HomeSlider() {
   const slides = useMemo(() => [
     {
       id: 1,
-      image: "/background.webp",
+      image: "/healthcare-team-consulting-patient.webp",
       heading: TEXT.WELCOME,
       sub: TEXT.AI_PLATFORM,
     },
     {
       id: 2,
-      image: "/bg.webp",
+      image: "/healthcare-background.webp",
       heading: TEXT.WELCOME,
       sub: TEXT.AI_PLATFORM,
     },

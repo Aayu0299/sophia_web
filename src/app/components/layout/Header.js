@@ -19,7 +19,7 @@ export default function Header() {
           <Link href={ROUTES.HOME} className="flex items-center">
             <Image
               src={images.logo}
-              alt="Logo"
+              alt="Sophia-logo"
               width={100}
               height={50}
               priority

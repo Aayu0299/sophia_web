@@ -37,13 +37,13 @@ export default function ResetPassword({ role }) {
   };
 
   return (
-    <div className="bg-[url('/imageBg.webp')] w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-7">
+    <div className="bg-[url('/health-background-image.webp')] w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-7">
       <div className="bg-(--white) rounded-[15px] md:rounded-[55px] w-full max-w-[740px] mx-auto shadow-lg px-3 sm:px-8 py-9">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Link href={ROUTES.HOME}>
             <Image
               src={images.logo}
-              alt="Logo"
+              alt="Sophia-logo"
               width={208}
               height={50}
               priority

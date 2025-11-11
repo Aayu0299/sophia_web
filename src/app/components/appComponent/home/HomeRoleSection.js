@@ -21,26 +21,26 @@ export default function HomeRoleSection() {
   const roles = [
     {
       name: TEXT.PATIENT,
-      icon: "/patient.svg",
-      activeIcon: "/patientIcon.svg",
+      icon: "/patient-icon.svg",
+      activeIcon: "/patient-icon-active.svg",
       path: ROUTES.PATIENT_LOGIN,
     },
     {
       name: TEXT.FAMILY,
-      icon: "/familyicon.svg",
-      activeIcon: "/family.svg",
+      icon: "/family-icon.svg",
+      activeIcon: "/family-icon-active.svg",
       path: ROUTES.FAMILY_LOGIN,
     },
     {
       name: TEXT.DOCTOR,
-      icon: "/doctor.svg",
-      activeIcon: "/icons_doctor.svg",
+      icon: "/doctor-icon.svg",
+      activeIcon: "/doctor-icon-active.svg",
       path: ROUTES.DOCTOR_LOGIN,
     },
     {
       name: TEXT.CAREGIVER,
-      icon: "/healthicons.svg",
-      activeIcon: "/health.svg",
+      icon: "/caregiver-icon.svg",
+      activeIcon: "/caregiver-icon-active.svg",
       path: ROUTES.CAREGIVER_LOGIN,
     },
   ];
@@ -68,7 +68,7 @@ export default function HomeRoleSection() {
           >
             <Image
               src={isActive || isHovered ? role.activeIcon : role.icon}
-              alt={role.name}
+              alt={`${role.name} icon`}
               width={66.67}
               height={83.33}
               className="transition-transform duration-200 hover:scale-105"

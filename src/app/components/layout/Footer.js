@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="section-container p-4 flex justify-between items-center">
         <Image
           src={images.logo}
-          alt="Logo"
+          alt="Sophia-logo"
           layout="responsive"
           priority
           style={{ cursor: "pointer" }}

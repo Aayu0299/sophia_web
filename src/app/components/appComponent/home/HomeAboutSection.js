@@ -10,8 +10,8 @@ export default function HomeAboutSection() {
         <div className="section-container sm:py-12 py-4 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="flex justify-center md:justify-start">
             <Image
-              src={images.aboutService}
-              alt="about-section"
+              src={images.healthCare}
+              alt="Doctor holding healthy food for patient diet consultation"
               width={411}
               height={473}
               className="rounded-[40px] w-full max-w-[411px] sm:h-[473px] h-auto"
@@ -30,8 +30,8 @@ export default function HomeAboutSection() {
               next generation of primary care.
             </p>
             <Image
-              src={images.service}
-              alt="doctor-service"
+              src={images.familyDoctor}
+              alt="Female doctor writing patient medical notes"
               width={513}
               height={473}
               className="rounded-[40px] w-full max-w-[513px] h-auto"
@@ -41,10 +41,10 @@ export default function HomeAboutSection() {
       </div>
 
       <div className="section-container sm:py-12 py-4 grid grid-cols-1 md:grid-cols-2 items-center gap-10 ">
-        <div className="order-2 md:order-1 xl:ml-[-36px]!">
+        <div className="order-2 md:order-1 xl:-ml-9!">
           <Image
-            src={images.about}
-            alt="patient-care"
+            src={images.medicalTeam}
+            alt="Medical team discussing patient care plan in hospital"
             width={589}
             height={600}
             className="rounded-[15px] w-full max-w-[589px] h-auto"
