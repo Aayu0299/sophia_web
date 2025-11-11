@@ -48,4 +48,13 @@ export const TEXT = {
   ENTER_EMAIL: "Enter your email id",
   PLEASE_ENTER_EMAIL: "Please enter email",
   ENTER_VALID_EMAIL: "Please enter valid email",
+  FULL_NAME: "Full name",
+  ENTER_FULL_NAME: "Enter your full name",
+  FULL_NAME_REQUIRED: "Full name is required.",
+  PHONE_NUMBER: "Phone number",
+  ENTER_PHONE_NUMBER: "Enter your phone number",
+  PHONE_REQUIRED: "Phone number is required.",
+  PHONE_INVALID: "Enter a valid phone number.",
+  USER_TYPE: "User Type",
+  USER_TYPE_REQUIRED: "Please select a user type.",
 };
