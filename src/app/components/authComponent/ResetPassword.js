@@ -64,13 +64,17 @@ export default function ResetPassword({ role }) {
                 setOtp(value);
                 setError("");
               }}
+              isInputNum={true}
               numInputs={4}
               shouldAutoFocus
               renderInput={(props) => (
                 <input
                   {...props}
+                  type="number"
                   className="w-11! h-11! sm:w-[60px]! sm:h-[60px]! text-center text-[24px] font-semibold text-(--darkblue) bg-(--blueshade) rounded-lg 
-                         focus:outline-none focus:ring-2 focus:ring-(--darkblue) selection:text-(--darkblue)"
+                         focus:outline-none focus:ring-2 focus:ring-(--darkblue) selection:text-(--darkblue)  [appearance:textfield] 
+             [&::-webkit-inner-spin-button]:appearance-none 
+             [&::-webkit-outer-spin-button]:appearance-none"
                 />
               )}
               containerStyle="flex justify-center gap-3"

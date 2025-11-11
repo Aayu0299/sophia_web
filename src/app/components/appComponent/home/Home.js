@@ -9,8 +9,8 @@ export default function Home() {
     <div>
       {/* Hero with Carousel */}
       <HomeSlider />
-      <div className="section-container flex justify-between items-start gap-2 py-4 sm:py-9 max-[430px]:flex-col">
-        <div className="w-1/2 max-[430px]:w-full">
+      <div className="section-container flex justify-between items-start gap-2 py-4 sm:py-9 max-[500px]:flex-col">
+        <div className="w-1/2 max-[500px]:w-full">
           <p className="font-semibold max-[430px]:text-[16px] text-[22px] text-(--lightBlack)">
             Trusted Care
           </p>
@@ -19,7 +19,7 @@ export default function Home() {
           </h1>
         </div>
 
-        <div className="w-1/2 max-[430px]:w-full">
+        <div className="w-1/2 max-[500px]:w-full">
           <p className="font-normal text-[14px] sm:text-[15px] leading-[25px] text-(--grayshade)">
             Sophia delivers state-of-the-art healthcare technology designed to
             empower physicians, hospitals, and health systems worldwide. From
