@@ -1,16 +1,6 @@
 import { TEXT } from "./Text";
 
 export const validationRules = {
-  userType: {
-    required: TEXT.USER_TYPE_REQUIRED,
-  },
-  fullName: {
-    required: TEXT.FULL_NAME_REQUIRED,
-    minLength: {
-      value: 2,
-      message: TEXT.FULL_NAME_REQUIRED,
-    },
-  },
   username: {
     required: TEXT.USER_REQUIRED,
     minLength: {
@@ -54,11 +44,32 @@ export const validationRules = {
       message: TEXT.ENTER_VALID_EMAIL,
     },
   },
+
+  userType: {
+    required: TEXT.USER_TYPE_REQUIRED,
+  },
+
+  fullName: {
+    required: TEXT.FULL_NAME_REQUIRED,
+    minLength: {
+      value: 2,
+      message: TEXT.FULL_NAME_MIN,
+    },
+    maxLength: {
+      value: 50,
+      message: TEXT.FULL_NAME_MAX,
+    },
+  },
+
   phone: {
     required: TEXT.PHONE_REQUIRED,
     pattern: {
       value: /^[0-9+\-\s()]{7,15}$/,
       message: TEXT.PHONE_INVALID,
     },
+  },
+
+  mrnNumber: {
+    required: TEXT.MRN_REQUIRED,
   },
 };

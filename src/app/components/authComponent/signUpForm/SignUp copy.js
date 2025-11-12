@@ -10,7 +10,6 @@ import { handleKeyPress } from "@/app/utils/InputFunction";
 
 //---------function for signup form-------------
 export default function SignUp({ role }) {
-  console.log("role", role);
   const {
     register,
     handleSubmit,
@@ -54,8 +53,12 @@ export default function SignUp({ role }) {
             onSubmit={handleSubmit(onSubmit)}
             className="w-full rounded-2xl bg-white p-5 shadow-sm [box-shadow:var(--boxshadow-input)] sm:p-6 md:p-8"
           >
-            <h1 className="text-xl font-semibold text-(--black)">{TEXT.CREATE_ACCOUNT}</h1>
-            <p className="mt-1 text-sm text-(--grayshade)">{TEXT.SIGN_ACCOUNT}</p>
+            <h1 className="text-xl font-semibold text-(--black)">
+              {TEXT.CREATE_ACCOUNT}
+            </h1>
+            <p className="mt-1 text-sm text-(--grayshade)">
+              {TEXT.SIGN_ACCOUNT}
+            </p>
 
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
               <InputField
@@ -128,11 +131,21 @@ export default function SignUp({ role }) {
                   {...register("agreeTerms", { required: true })}
                 />
                 <span>
-                  I agree to the <a className="underline" href="#">Terms</a> and <a className="underline" href="#">Privacy Policy</a>.
+                  I agree to the{" "}
+                  <a className="underline" href="#">
+                    Terms
+                  </a>{" "}
+                  and{" "}
+                  <a className="underline" href="#">
+                    Privacy Policy
+                  </a>
+                  .
                 </span>
               </label>
               {errors.agreeTerms && (
-                <p className="text-[12px] text-red-600">Please accept the terms to continue.</p>
+                <p className="text-[12px] text-red-600">
+                  Please accept the terms to continue.
+                </p>
               )}
             </div>
 
@@ -151,18 +164,25 @@ export default function SignUp({ role }) {
         <aside className="hidden rounded-2xl bg-white p-6 lg:block [box-shadow:var(--boxshadow-input)]">
           <div className="flex h-full flex-col justify-between">
             <div>
-              <div className="text-xl font-semibold text-blue-700">{TEXT.SOPHIA}</div>
+              <div className="text-xl font-semibold text-blue-700">
+                {TEXT.SOPHIA}
+              </div>
               <p className="mt-3 text-sm text-(--grayshade)">
-                Welcome to our digital health platform. Create your account to get started.
+                Welcome to our digital health platform. Create your account to
+                get started.
               </p>
               <div className="mt-6 space-y-3 text-sm">
                 <div className="rounded-lg border border-gray-200 p-3">
                   <div className="font-medium">Website Details</div>
-                  <div className="mt-2 text-(--grayshade)">Secure and private by design.</div>
+                  <div className="mt-2 text-(--grayshade)">
+                    Secure and private by design.
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="mt-8 text-xs text-(--grayshade)">Need help? Contact support</div>
+            <div className="mt-8 text-xs text-(--grayshade)">
+              Need help? Contact support
+            </div>
           </div>
         </aside>
       </div>

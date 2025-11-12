@@ -1,6 +1,6 @@
 "use client";
 
-import SignUp from "@/app/components/authComponent/SignUp";
+import SignUp from "@/app/components/authComponent/signUpForm/SignUp";
 import { useParams } from "next/navigation";
 
 export default function LoginPage() {

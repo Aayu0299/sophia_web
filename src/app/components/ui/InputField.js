@@ -1,5 +1,6 @@
 "use client";
 
+import { Icons } from "@/app/utils/Icons";
 import { sanitizeHtmlTags } from "@/app/utils/InputFunction";
 
 export default function InputField({
@@ -14,6 +15,7 @@ export default function InputField({
   autoComplete,
   onKeyDown,
   className = "",
+  icon = false,
   watch,
   ...rest
 }) {
@@ -36,6 +38,8 @@ export default function InputField({
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
+          autoCorrect="off"
+          spellCheck={false}
           onKeyDown={onKeyDown}
           className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
           {...(register
@@ -49,6 +53,9 @@ export default function InputField({
             : {})}
           {...rest}
         />
+        {icon && (
+          <Icons.IoIosArrowDown className="absolute top-6 right-5 text-(--grayshade) w-5 h-5" />
+        )}
       </div>
 
       {error && (

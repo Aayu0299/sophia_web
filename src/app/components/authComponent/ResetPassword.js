@@ -70,7 +70,11 @@ export default function ResetPassword({ role }) {
               renderInput={(props) => (
                 <input
                   {...props}
-                  type="number"
+                  inputMode="numeric" // mobile keypad numeric
+                  pattern="[0-9]*" // restrict only digits
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, ""); // remove non-digits
+                  }}
                   className="w-11! h-11! sm:w-[60px]! sm:h-[60px]! text-center text-[24px] font-semibold text-(--darkblue) bg-(--blueshade) rounded-lg 
                          focus:outline-none focus:ring-2 focus:ring-(--darkblue) selection:text-(--darkblue)  [appearance:textfield] 
              [&::-webkit-inner-spin-button]:appearance-none 
