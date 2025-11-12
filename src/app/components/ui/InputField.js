@@ -36,6 +36,8 @@ export default function InputField({
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
+          autoCorrect="off"
+          spellCheck={false}
           onKeyDown={onKeyDown}
           className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
           {...(register

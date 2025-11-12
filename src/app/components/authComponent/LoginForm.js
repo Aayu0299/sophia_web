@@ -93,7 +93,8 @@ export default function LoginForm({ role }) {
                 <p className="font-semibold text-[15px] text-(--darkgray) text-center">
                   {TEXT.DONT_ACCOUNT}{" "}
                   <Link
-                    href={`/${role}/${ROUTES.SIGNUP}`}
+                    // href={`/${role}/${ROUTES.SIGNUP}`}
+                    href="#"
                     className="text-(--darkblue) hover:underline"
                   >
                     {TEXT.CREATE_ACCOUNT}
