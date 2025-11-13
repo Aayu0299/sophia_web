@@ -2,13 +2,13 @@ import { ROUTES } from "@/app/utils/Constant";
 import { images } from "@/app/utils/Images";
 import Image from "next/image";
 import Link from "next/link";
-import InputField from "../ui/InputField";
 import Button from "../ui/Button";
 import { TEXT } from "@/app/utils/Text";
 import { validationRules } from "@/app/utils/Validation";
 import { handleSpace } from "@/app/utils/InputFunction";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import InputField from "../ui/InputField";
 
 //---------function for forgot pasword------------
 export default function ForgotPassword({ role }) {
@@ -33,7 +33,7 @@ export default function ForgotPassword({ role }) {
           <Link href={ROUTES.HOME}>
             <Image
               src={images.logo}
-              alt="Sophia-logo"
+              alt="Sophia logo"
               width={208}
               height={50}
               priority

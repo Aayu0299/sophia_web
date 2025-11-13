@@ -43,7 +43,7 @@ export default function ResetPassword({ role }) {
           <Link href={ROUTES.HOME}>
             <Image
               src={images.logo}
-              alt="Sophia-logo"
+              alt="Sophia logo"
               width={208}
               height={50}
               priority

@@ -39,6 +39,11 @@ export default function LoginForm({ role }) {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="w-full max-w-[450px] m-auto px-4 xl:px-0">
             <div>
+              <Link href={ROUTES.HOME}>
+                <p className="font-bold text-[16px] sm:text-[17px] text-center underline text-(--lightBlack) mt-5 sm:mt-10 cursor-pointer">
+                  {TEXT.BACK_HOME}
+                </p>
+              </Link>
               <h1 className="font-black text-[30px] sm:text-[40px] lg:text-[61px] text-center text-(--lightBlack)">
                 {TEXT.WELCOME}
               </h1>

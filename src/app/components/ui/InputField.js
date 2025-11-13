@@ -2,6 +2,8 @@
 
 import { Icons } from "@/app/utils/Icons";
 import { sanitizeHtmlTags } from "@/app/utils/InputFunction";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 export default function InputField({
   label,
@@ -24,7 +26,7 @@ export default function InputField({
       {label && (
         <label
           htmlFor={name}
-          className="font-medium text-[20px] text-(--black)"
+          className="font-medium text-[20px] text-(--black) mt-4"
         >
           {label}
         </label>
@@ -59,10 +61,53 @@ export default function InputField({
       </div>
 
       {error && (
-        <p className="mt-2 text-[12px] text-red-600" role="alert">
+        <p className="mt-2 text-[12px] text-(--redshade)" role="alert">
           {error}
         </p>
       )}
     </div>
   );
 }
+
+export const CommonPhoneInput = ({
+  name,
+  label,
+  value,
+  defaultCountry,
+  onChange,
+  error,
+}) => {
+  return (
+    <div>
+      <label htmlFor={name} className="font-medium text-[20px] text-(--black)">
+        {label}
+      </label>
+
+      <div className="mt-2">
+        <PhoneInput
+          country={defaultCountry}
+          value={value}
+          onChange={onChange}
+          countryCodeEditable={false}
+          inputProps={{
+            name,
+            required: true,
+            autoFocus: false,
+          }}
+          containerClass="!w-full"
+          buttonClass="!border-none !bg-transparent !pl-3 !rounded-l-xl"
+          inputClass="!w-full !border-none !h-[60px] !text-[16px] !bg-white !px-3 !outline-none 
+              !shadow-[var(--boxshadow-input)] !rounded-xl placeholder:!text-[var(--grayshade)] 
+              !pl-[60px]" // space for flag
+          dropdownClass="!text-[14px]"
+        />
+      </div>
+
+      {error && (
+        <p className="mt-2 text-[12px] text-(--redshade)" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+};

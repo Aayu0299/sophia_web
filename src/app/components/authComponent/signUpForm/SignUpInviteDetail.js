@@ -14,8 +14,7 @@ export default function SignUpInviteDetail({ role }) {
 
   return (
     <div className="w-full sm:mt-8 xl:p-[30px]">
-      <div className="sm:flex items-center mb-12 hidden">
-        <Icons.IoArrowBack className="h-5 w-5 mr-2" />
+      <div className="sm:flex items-center mb-10 hidden">
         <Button
           onClick={() => router.push(`/${role}/${ROUTES.LOGIN}`)}
           className="rounded-md font-bold! text-[13px]! text-(--white) w-[125px]! h-[35px] py-0!"
@@ -28,7 +27,7 @@ export default function SignUpInviteDetail({ role }) {
         <Link href={ROUTES.HOME} className="hidden sm:block">
           <Image
             src={images.logo}
-            alt="Sophia-logo"
+            alt="Sophia logo"
             width={318}
             height={94}
             priority
@@ -38,20 +37,14 @@ export default function SignUpInviteDetail({ role }) {
 
         <div className="space-y-4">
           <h2 className="font-semibold text-[16px] sm:text-[18px] text-(--blackshade)">
-            Welcome to the new medical communication experience.
+            {TEXT.MEDICAL_TEXT}
           </h2>
 
           <div className="space-y-2 font-normal text-[16px] leading-relaxed text-(--lightBlack)">
+            <p>{TEXT.SOPHIA_JOURNEY}</p>
             <p>
-              Create your Sophia account to take control of your health journey.
-            </p>
-            <p>
-              Connect with your care team, receive personalized updates, and
-              access tools that help you stay informed, engaged, and supported
-              every step of the way.
-              <span className="block">
-                Simple, secure, and designed with your well-being in mind.
-              </span>
+              {TEXT.CONNECT_TEXT}
+              <span className="block">{TEXT.SIMPLE_TEXT}</span>
             </p>
           </div>
         </div>

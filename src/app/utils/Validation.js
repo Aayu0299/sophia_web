@@ -61,15 +61,27 @@ export const validationRules = {
     },
   },
 
-  phone: {
-    required: TEXT.PHONE_REQUIRED,
-    pattern: {
-      value: /^[0-9+\-\s()]{7,15}$/,
-      message: TEXT.PHONE_INVALID,
+  name: {
+    required: TEXT.NAME_REQUIRED,
+    minLength: {
+      value: 2,
+      message: TEXT.NAME_MIN,
+    },
+    maxLength: {
+      value: 50,
+      message: TEXT.NAME_MAX,
     },
   },
 
   mrnNumber: {
     required: TEXT.MRN_REQUIRED,
+  },
+
+  phoneNumber: {
+    required: TEXT.PHONE_REQUIRED,
+  },
+
+  birthDate: {
+    required: TEXT.BOD_REQUIRED,
   },
 };
