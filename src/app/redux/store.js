@@ -4,7 +4,7 @@ import { persistStore, persistReducer, PERSIST } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { combineReducers } from "redux";
-import createEncryptor from "redux-persist-transform-encrypt";
+import { encryptTransform } from "redux-persist-transform-encrypt";
 
 // --------------------------------------------------
 // 1. Use sessionStorage instead of localStorage
@@ -16,13 +16,11 @@ const sessionStorage = createWebStorage("session");
 // 2. Create encryption transform
 //    Uses secretKey (must be stored in env variables)
 // --------------------------------------------------
-const encryptor = createEncryptor({
+const encryptor = encryptTransform({
   secretKey:
     process.env.NEXT_PUBLIC_ENCRYPTION_KEY ||
-    "default-key-change-in-production", // <-- Change for production
-
+    "default-key-change-in-production",
   onError: (error) => {
-    // Do NOT log sensitive info
     if (process.env.NODE_ENV === "development") {
       console.error("Encryption error:", error);
     }
