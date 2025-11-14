@@ -50,6 +50,7 @@ export default function ForgotPassword({ role }) {
             label={TEXT.EMAIL_ID}
             name="email"
             placeholder={TEXT.ENTER_EMAIL}
+            maxLength={100}
             register={register}
             validationRules={validationRules.email}
             error={errors.email?.message}

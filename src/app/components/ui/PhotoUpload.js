@@ -6,7 +6,7 @@ import { TEXT } from "@/app/utils/Text";
 import { images } from "@/app/utils/Images";
 import Image from "next/image";
 
-export const CommonIDPhotoUpload = ({ label, image, setImage }) => {
+export const CommonIDPhotoUpload = ({ label, image, setImage, sublabel }) => {
   const fileInputRef = useRef(null);
 
   // Handle file selection
@@ -36,12 +36,15 @@ export const CommonIDPhotoUpload = ({ label, image, setImage }) => {
       {label && (
         <label className="font-medium text-[20px] text-(--black)">
           {label}
+          {sublabel && (
+            <sub className="text-(--darkgray) text-[11px]">({sublabel})</sub>
+          )}
         </label>
       )}
 
       {/* Upload Box */}
       <div
-        className={`relative flex items-center justify-center bg-white rounded-xl [box-shadow:var(--boxshadow-input)] h-[206px]
+        className={`relative  bg-white rounded-xl [box-shadow:var(--boxshadow-input)] h-[206px]
   [box-shadow:var(--boxshadow-input)] cursor-pointer overflow-hidden`}
         onClick={() => !image && fileInputRef.current?.click()}
       >
@@ -54,7 +57,7 @@ export const CommonIDPhotoUpload = ({ label, image, setImage }) => {
         />
 
         {!image ? (
-          <div className="flex flex-col items-center justify-center w-full px-3">
+          <div className="flex flex-col items-center justify-center w-full px-3 mt-10">
             <Image
               src={images.uploadIcon}
               alt="Upload icon"
@@ -69,19 +72,20 @@ export const CommonIDPhotoUpload = ({ label, image, setImage }) => {
           </div>
         ) : (
           <div
-            className="relative w-[120px] h-[120px] [box-shadow:var(--boxshadow-input)] rounded-xl"
-            onClick={() => fileInputRef.current?.click()} // image click se input open
+            className="relative aspect-[3/1] m-5 [box-shadow:var(--boxshadow-input)] rounded-xl overflow-hidden cursor-pointer"
+            onClick={() => fileInputRef.current?.click()}
           >
             <Image
               src={image.preview}
               alt="Preview"
               fill
-              className="rounded-md object-cover"
+              className="object-cover object-center"
             />
+
             <button
               type="button"
               onClick={handleRemove}
-              className="absolute top-1 right-1 bg-white rounded-full p-1 shadow hover:bg-gray-100 transition"
+              className="absolute top-1 right-1 bg-white rounded-xl p-1 shadow hover:bg-gray-100 transition"
             >
               <Icons.ImCross
                 size={14}

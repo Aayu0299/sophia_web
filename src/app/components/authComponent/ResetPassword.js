@@ -94,6 +94,7 @@ export default function ResetPassword({ role }) {
             name="password"
             type="password"
             placeholder={TEXT.ENTER_PASSWORD}
+            maxLength={15}
             register={register}
             validationRules={validationRules.password}
             error={errors.password?.message}
@@ -105,6 +106,7 @@ export default function ResetPassword({ role }) {
             name="confirmPassword"
             type="password"
             placeholder={TEXT.ENTER_CONFIRM_PASSWORD}
+            maxLength={15}
             register={register}
             validationRules={{
               ...validationRules?.confirmPassword,

@@ -9,7 +9,7 @@ import { TEXT } from "@/app/utils/Text";
 import { useRouter } from "next/navigation";
 
 //---------function for signup form invite details page-------------
-export default function SignUpInviteDetail({ role }) {
+export default function SignUpInviteDetail({ role, isPatientOrFamily }) {
   const router = useRouter();
 
   return (
@@ -17,7 +17,7 @@ export default function SignUpInviteDetail({ role }) {
       <div className="sm:flex items-center mb-10 hidden">
         <Button
           onClick={() => router.push(`/${role}/${ROUTES.LOGIN}`)}
-          className="rounded-md font-bold! text-[13px]! text-(--white) w-[125px]! h-[35px] py-0!"
+          className="rounded-md font-bold! text-[13px]! text-(--white) w-[125px]! h-[35px] py-0! uppercase"
         >
           {TEXT.BACK_SIGNIN}
         </Button>
@@ -84,14 +84,16 @@ export default function SignUpInviteDetail({ role }) {
             </span>
           </div>
 
-          <div className="flex justify-between items-center">
-            <span className="font-medium text-[15px] sm:text-[17px] text-(--grayshade)">
-              {TEXT.ACCESS_TYPE} :
-            </span>
-            <span className="font-medium text-[15px] sm:text-[17px] text-(--darkblue)">
-              Friends & Family
-            </span>
-          </div>
+          {isPatientOrFamily && (
+            <div className="flex justify-between items-center">
+              <span className="font-medium text-[15px] sm:text-[17px] text-(--grayshade)">
+                {TEXT.ACCESS_TYPE} :
+              </span>
+              <span className="font-medium text-[15px] sm:text-[17px] text-(--darkblue)">
+                Friends & Family
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

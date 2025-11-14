@@ -20,8 +20,13 @@ export const validationRules = {
       message: TEXT.PASSWORD_MIN,
     },
     maxLength: {
-      value: 10,
+      value: 15,
       message: TEXT.PASSWORD_MAX,
+    },
+    pattern: {
+      value:
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/,
+      message: TEXT.PASSWORD_INCLUDE,
     },
   },
 
@@ -32,8 +37,13 @@ export const validationRules = {
       message: TEXT.CONFIRM_PASSWORD_MIN,
     },
     maxLength: {
-      value: 10,
+      value: 15,
       message: TEXT.CONFIRM_PASSWORD_MAX,
+    },
+    pattern: {
+      value:
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/,
+      message: TEXT.CONFIRM_PASSWORD_INCLUDE,
     },
   },
 

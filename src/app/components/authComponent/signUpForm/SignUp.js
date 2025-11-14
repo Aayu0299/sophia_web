@@ -13,11 +13,17 @@ import Link from "next/link";
 import { ROUTES } from "@/app/utils/Constant";
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
-import { Icons } from "@/app/utils/Icons";
 import { usePathname, useRouter } from "next/navigation";
 import { CommonDatePicker } from "../../ui/Datepicker";
 import CustomSelect from "../../ui/CustomSelect";
 import { CommonIDPhotoUpload } from "../../ui/PhotoUpload";
+import {
+  genericRoleOptions,
+  rotaryRoleOptions,
+  securityQuestionOptions,
+  specializationOptions,
+  relationshipOptions,
+} from "@/app/utils/MockData";
 
 //---------function for signup form-------------
 export default function SignUp({ role }) {
@@ -37,27 +43,26 @@ export default function SignUp({ role }) {
   const [secondaryPhone, setSecondaryPhone] = useState("");
   const [secondaryDialCode, setSecondaryDialCode] = useState("");
   const [secondaryCountryCode, setSecondaryCountryCode] = useState("us");
+  const [specialization, setSpecialization] = useState("");
+  const [rotaryRole, setRotaryRole] = useState(null);
+  const [GenericRole, setGenericRole] = useState(null);
+  const [consent1, setConsent1] = useState(false);
+  const [consent2, setConsent2] = useState(false);
+  const [consent3, setConsent3] = useState(false);
 
-  const securityQuestionOptions = [
-    { value: "birthCity", label: "What city were you born in?" },
-    { value: "petName", label: "What was your first pet’s name?" },
-    { value: "schoolName", label: "What was the name of your first school?" },
-    { value: "favTeacher", label: "Who was your favorite teacher?" },
-  ];
+  const isPatientOrFamily =
+    selectedUserType === "Patient" || selectedUserType === "Family";
 
-  // dynamic options (API se bhi la sakte ho)
-  const relationshipOptions = [
-    { value: "father", label: "Father" },
-    { value: "mother", label: "Mother" },
-    { value: "spouse", label: "Spouse" },
-    { value: "guardian", label: "Guardian" },
-  ];
+  const isDoctorOrCareGiver =
+    selectedUserType === "Doctor" || selectedUserType === "Caregiver";
 
   const {
     register,
     handleSubmit,
     watch,
     setValue,
+    clearErrors,
+    setError,
     trigger,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -66,12 +71,17 @@ export default function SignUp({ role }) {
       userType: "",
       fullName: "",
       email: "",
+      phoneNumber: "",
       mrnNumber: "",
       password: "",
       confirmPassword: "",
       name: "",
       contactEmail: "",
-      agreeTerms: false,
+      Specialization: "",
+      npiNumber: "",
+      answerOne: "",
+      answerTwo: "",
+      consents: false,
     },
   });
 
@@ -91,21 +101,21 @@ export default function SignUp({ role }) {
     }
   }, [pathname, role, selectedUserType]);
 
-  const onSubmit = async (formData) => {
-    // if (idPhoto?.file) {
-    //   formData.append("id_photo", idPhoto.file); // only append if selected
-    // }
+  const onSubmit = (data) => {
+    if (!consent1 || !consent2 || !consent3) {
+      setError("consents", {
+        message: TEXT.ACCEPT_TERMS,
+      });
+      return;
+    }
   };
 
   return (
     <div className="bg-(--lightblue) p-[30px]">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-12">
-        <div className="h-[calc(100vh-100px)] overflow-y-auto">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full rounded-[5px] bg-(--white) shadow-sm [box-shadow:var(--shadow-form)] p-4 lg:p-10"
-          >
-            <h1 className="[text-shadow:0px_2px_2px_0px_#00000066] text-(--lightblack) font-black text-[25px] sm:text-[29px] lg:text-[40px] text-center uppercase">
+        <div className="w-full p-4 lg:p-10 h-[calc(100vh-60px)] overflow-y-auto [box-shadow:var(--shadow-form)] rounded-[5px] bg-(--white) scrollbar-hide">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h1 className="[text-shadow:0px_2px_2px_0px_#00000066] text-(--lightblack) font-black text-[25px] sm:text-[29px] lg:text-[40px] text-center">
               {TEXT.CREATE_ACCOUNT}
             </h1>
             <p className="mt-1 text-[18px] lg:text-[24px] text-center text-(--darkgray)">
@@ -126,7 +136,7 @@ export default function SignUp({ role }) {
             <div className="flex items-center mb-12 sm:hidden mt-4">
               <Button
                 onClick={() => router.push(`/${role}/${ROUTES.LOGIN}`)}
-                className="rounded-md font-bold! text-[13px]! text-(--white) w-[125px]! h-[35px] py-0!"
+                className="rounded-md font-bold! text-[13px]! text-(--white) w-[125px]! h-[35px] py-0! uppercase"
               >
                 {TEXT.BACK_SIGNIN}
               </Button>
@@ -149,6 +159,7 @@ export default function SignUp({ role }) {
                 label={TEXT.FULL_NAME}
                 name="fullName"
                 placeholder={TEXT.ENTER_FULL_NAME}
+                maxLength={50}
                 error={errors.fullName?.message}
                 register={register}
                 validationRules={validationRules.fullName}
@@ -160,18 +171,21 @@ export default function SignUp({ role }) {
                 name="email"
                 placeholder={TEXT.ENTER_YOU_EMAIL}
                 register={register}
+                maxLength={100}
                 validationRules={validationRules.email}
                 error={errors.email?.message}
                 onKeyDown={handleSpace}
               />
 
               {/* Datepicker Field*/}
-              <CommonDatePicker
-                label={TEXT.BIRTH_DATE}
-                selected={date}
-                onChange={setDate}
-                // error={!date ? TEXT.BOD_REQUIRED : ""}
-              />
+              {isPatientOrFamily && (
+                <CommonDatePicker
+                  label={TEXT.BIRTH_DATE}
+                  selected={date}
+                  onChange={setDate}
+                  // error={!date ? TEXT.BOD_REQUIRED : ""}
+                />
+              )}
 
               {/* Phone Number Field*/}
               <CommonPhoneInput
@@ -190,21 +204,35 @@ export default function SignUp({ role }) {
                   trigger("phoneNumber");
                 }}
               />
+              {isDoctorOrCareGiver && (
+                <CustomSelect
+                  label={TEXT.SPECIALIZATION}
+                  options={specializationOptions}
+                  placeholder={TEXT.SELECT_SPECIALIZATION}
+                  value={specialization}
+                  onChange={setSpecialization}
+                />
+              )}
 
-              <InputField
-                label={TEXT.MRN_NUMBER}
-                name="mrnNumber"
-                placeholder={TEXT.ENTER_MRN_NUMBER}
-                register={register}
-                validationRules={validationRules.mrnNumber}
-                error={errors.mrnNumber?.message}
-                onKeyDown={handleSpace}
-              />
+              {isPatientOrFamily && (
+                <InputField
+                  label={TEXT.MRN_NUMBER}
+                  name="mrnNumber"
+                  placeholder={TEXT.ENTER_MRN_NUMBER}
+                  maxLength={20}
+                  register={register}
+                  validationRules={validationRules.mrnNumber}
+                  error={errors.mrnNumber?.message}
+                  onKeyDown={handleSpace}
+                />
+              )}
+
               <InputField
                 label={TEXT.PASSWORD}
                 name="password"
                 type="password"
                 placeholder={TEXT.ENTER_PASSWORD_TEXT}
+                maxLength={15}
                 register={register}
                 validationRules={validationRules.password}
                 error={errors.password?.message}
@@ -215,6 +243,7 @@ export default function SignUp({ role }) {
                 name="confirmPassword"
                 type="password"
                 placeholder={TEXT.ENTER_CNF_PASSWORD}
+                maxLength={15}
                 register={register}
                 validationRules={{
                   ...validationRules?.confirmPassword,
@@ -224,6 +253,44 @@ export default function SignUp({ role }) {
                 error={errors.confirmPassword?.message}
                 onKeyDown={handleSpace}
               />
+
+              {isDoctorOrCareGiver && (
+                <div className="space-y-4">
+                  <div>
+                    <InputField
+                      label={TEXT.NPI_NUMBER}
+                      name="npiNumber"
+                      placeholder={TEXT.ENTER_NPI_NUMBER}
+                      register={register}
+                      maxLength={10}
+                      // validationRules={validationRules.npiNumber}
+                      // error={errors.npiNumber?.message}
+                      numberType={true}
+                      onKeyDown={handleSpace}
+                    />
+                    <span className="font-normal text-[13px] text-(--darkgray) mt-2">
+                      {TEXT.NPI_TEXT}
+                    </span>
+                  </div>
+
+                  {/* Caregiver rotary role*/}
+                  <CustomSelect
+                    label={TEXT.ROTARY_ROLE}
+                    options={rotaryRoleOptions}
+                    placeholder={TEXT.SELECT_ROTARY_ROLE}
+                    value={rotaryRole}
+                    onChange={setRotaryRole}
+                  />
+                  {/* Generic role */}
+                  <CustomSelect
+                    label={TEXT.GENERIC_ROLE}
+                    options={genericRoleOptions}
+                    placeholder={TEXT.SELECT_GENERIC_ROLE}
+                    value={GenericRole}
+                    onChange={setGenericRole}
+                  />
+                </div>
+              )}
 
               {/* Security questions section */}
               <div className="space-y-4">
@@ -239,6 +306,14 @@ export default function SignUp({ role }) {
                   value={securityQ1}
                   onChange={setSecurityQ1}
                 />
+                {isDoctorOrCareGiver && (
+                  <InputField
+                    name="answerOne"
+                    placeholder={TEXT.YOUR_ANSWER}
+                    register={register}
+                    onKeyDown={handleKeyPress}
+                  />
+                )}
 
                 {/* Security Question 2 */}
                 <CustomSelect
@@ -248,98 +323,141 @@ export default function SignUp({ role }) {
                   value={securityQ2}
                   onChange={setSecurityQ2}
                 />
+                {isDoctorOrCareGiver && (
+                  <InputField
+                    name="answerTwo"
+                    placeholder={TEXT.YOUR_ANSWER}
+                    register={register}
+                    onKeyDown={handleKeyPress}
+                  />
+                )}
               </div>
 
               {/* Emergency contact info section */}
-              <div className="space-y-4">
-                <div className="text-center mt-8">
-                  <h2 className="font-semibold text-[20px] sm:text-[22px] max-[400px]:text-[16px] text-(--black) inline-block relative">
-                    {TEXT.EMERGENCY_CONTACT} :
-                    <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 w-[25px] border-b-4 border-(--darkblue) rounded-sm"></span>
-                  </h2>
-                </div>
+              {isPatientOrFamily && (
+                <div className="space-y-4">
+                  <div className="text-center mt-8">
+                    <h2 className="font-semibold text-[20px] sm:text-[22px] max-[400px]:text-[16px] text-(--black) inline-block relative">
+                      {TEXT.EMERGENCY_CONTACT} :
+                      <span className="absolute left-1/2 -bottom-1 transform -translate-x-1/2 w-[25px] border-b-4 border-(--darkblue) rounded-sm"></span>
+                    </h2>
+                  </div>
 
-                <InputField
-                  label={TEXT.NAME}
-                  name="name"
-                  placeholder={TEXT.ENTER_NAME}
-                  error={errors.name?.message}
-                  register={register}
-                  onKeyDown={handleKeyPress}
-                />
-                <InputField
-                  label={TEXT.EMAIL}
-                  name="contactEmail"
-                  placeholder={TEXT.ENTER_EMAIL}
-                  register={register}
-                  error={errors.email?.message}
-                  onKeyDown={handleSpace}
-                />
-                {/* Phone Number Field*/}
-                <CommonPhoneInput
-                  name="alternatePhone"
-                  label={TEXT.PHONE_NUMBER}
-                  value={secondaryDialCode + secondaryPhone}
-                  defaultCountry="us"
-                  onChange={(value, country) => {
-                    const dial = country.dialCode;
-                    const phone = value.slice(dial.length);
-                    setSecondaryDialCode(dial);
-                    setSecondaryPhone(phone);
-                    setSecondaryCountryCode(country.countryCode);
-                    setValue("alternatePhone", phone, {
-                      shouldValidate: false,
-                    }); // no validation
-                  }}
-                />
-
-                {/* Relationship field*/}
-                <div className="mt-4">
-                  <CustomSelect
-                    label={TEXT.RELATIONSHIP}
-                    options={relationshipOptions}
-                    placeholder={TEXT.SELECT_RELATION}
-                    value={relationship}
-                    onChange={setRelationship}
+                  <InputField
+                    label={TEXT.NAME}
+                    name="name"
+                    placeholder={TEXT.ENTER_NAME}
+                    maxLength={50}
+                    register={register}
+                    onKeyDown={handleKeyPress}
                   />
+                  <InputField
+                    label={TEXT.EMAIL}
+                    name="contactEmail"
+                    placeholder={TEXT.ENTER_EMAIL}
+                    maxLength={100}
+                    register={register}
+                    onKeyDown={handleSpace}
+                  />
+                  {/* Phone Number Field*/}
+                  <CommonPhoneInput
+                    name="alternatePhone"
+                    label={TEXT.PHONE_NUMBER}
+                    value={secondaryDialCode + secondaryPhone}
+                    defaultCountry="us"
+                    onChange={(value, country) => {
+                      const dial = country.dialCode;
+                      const phone = value.slice(dial.length);
+                      setSecondaryDialCode(dial);
+                      setSecondaryPhone(phone);
+                      setSecondaryCountryCode(country.countryCode);
+                      setValue("alternatePhone", phone, {
+                        shouldValidate: false,
+                      }); // no validation
+                    }}
+                  />
+
+                  {/* Relationship field*/}
+                  <div className="mt-4">
+                    <CustomSelect
+                      label={TEXT.RELATIONSHIP}
+                      options={relationshipOptions}
+                      placeholder={TEXT.SELECT_RELATION}
+                      value={relationship}
+                      onChange={setRelationship}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* ID Photo */}
               <CommonIDPhotoUpload
                 label={TEXT.ID_PHOTO}
+                sublabel={isDoctorOrCareGiver ? TEXT.OPTIONAL : ""}
                 image={idPhoto}
                 setImage={setIdPhoto}
               />
 
               {/* Checkboxes */}
               <div className="space-y-3">
-                <label className="flex items-start space-x-2">
-                  <input type="checkbox" className="mt-1" />
-                  <span className="text-(--darkgray) font-semibold text-[15px]">
-                    <Link href="#" className="underline">
-                      {TEXT.PATIENT_CONSENT}
-                    </Link>
-                  </span>
-                </label>
+                <div className="space-y-3">
+                  <label className="flex items-start space-x-2">
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={consent1}
+                      onChange={(e) => {
+                        setConsent1(e.target.checked);
+                        clearErrors("consents");
+                      }}
+                    />
+                    <span className="text-(--darkgray) font-semibold text-[15px]">
+                      <Link href="#" className="underline">
+                        {TEXT.PATIENT_CONSENT}
+                      </Link>
+                    </span>
+                  </label>
 
-                <label className="flex items-start space-x-2">
-                  <input type="checkbox" className="mt-1" />
-                  <span className="text-(--darkgray) font-semibold text-[15px]">
-                    <Link href="#" className="underline">
-                      {TEXT.HIPPA_CONDITION}
-                    </Link>
-                  </span>
-                </label>
+                  <label className="flex items-start space-x-2">
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={consent2}
+                      onChange={(e) => {
+                        setConsent2(e.target.checked);
+                        clearErrors("consents");
+                      }}
+                    />
+                    <span className="text-(--darkgray) font-semibold text-[15px]">
+                      <Link href="#" className="underline">
+                        {TEXT.HIPPA_CONDITION}
+                      </Link>
+                    </span>
+                  </label>
 
-                <label className="flex items-start space-x-2">
-                  <input type="checkbox" className="mt-1" />
-                  <span className="text-(--darkgray) font-semibold text-[15px]">
-                    <Link href="#" className="underline">
-                      {TEXT.TEXT_CONTENT}
-                    </Link>
-                  </span>
-                </label>
+                  <label className="flex items-start space-x-2">
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={consent3}
+                      onChange={(e) => {
+                        setConsent3(e.target.checked);
+                        clearErrors("consents");
+                      }}
+                    />
+                    <span className="text-(--darkgray) font-semibold text-[15px]">
+                      <Link href="#" className="underline">
+                        {TEXT.TEXT_CONTENT}
+                      </Link>
+                    </span>
+                  </label>
+                </div>
+
+                {errors.consents && (
+                  <p className="mt-2 text-[12px] text-(--redshade)">
+                    {errors.consents.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -366,7 +484,7 @@ export default function SignUp({ role }) {
         </div>
 
         {/* signup invite details page */}
-        <SignUpInviteDetail role={role} />
+        <SignUpInviteDetail role={role} isPatientOrFamily={isPatientOrFamily} />
       </div>
 
       <UserTypeModal

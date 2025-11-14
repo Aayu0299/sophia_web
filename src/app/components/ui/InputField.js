@@ -2,6 +2,7 @@
 
 import { Icons } from "@/app/utils/Icons";
 import { sanitizeHtmlTags } from "@/app/utils/InputFunction";
+import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
@@ -18,9 +19,14 @@ export default function InputField({
   onKeyDown,
   className = "",
   icon = false,
+  numberType = false,
+  maxLength,
   watch,
   ...rest
 }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPassword = type === "password";
+  const inputType = isPassword ? (showPassword ? "text" : "password") : type;
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -36,13 +42,19 @@ export default function InputField({
         <input
           id={name}
           name={name}
-          type={type}
+          type={inputType}
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
+          maxLength={maxLength}
           autoCorrect="off"
           spellCheck={false}
           onKeyDown={onKeyDown}
+          {...(numberType && {
+            onInput: (e) => {
+              e.target.value = e.target.value.replace(/[^0-9]/g, "");
+            },
+          })}
           className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
           {...(register
             ? register(name, {
@@ -55,8 +67,22 @@ export default function InputField({
             : {})}
           {...rest}
         />
-        {icon && (
-          <Icons.IoIosArrowDown className="absolute top-6 right-5 text-(--grayshade) w-5 h-5" />
+        {icon && !isPassword && (
+          <Icons.IoIosArrowDown className="absolute top-5 right-5 text-(--grayshade) w-5 h-5 cursor-pointer" />
+        )}
+
+        {/* PASSWORD SHOW/HIDE ICON */}
+        {isPassword && (
+          <span
+            className="absolute top-4 right-5 cursor-pointer text-(--grayshade)"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <Icons.FaEye size={20} />
+            ) : (
+              <Icons.FaEyeSlash size={20} />
+            )}
+          </span>
         )}
       </div>
 

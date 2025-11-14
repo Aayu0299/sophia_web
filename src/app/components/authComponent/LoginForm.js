@@ -61,6 +61,7 @@ export default function LoginForm({ role }) {
                   label={TEXT.USERNAME}
                   name="username"
                   placeholder={TEXT.ENTER_USERNAME}
+                  maxLength={30}
                   register={register}
                   validationRules={validationRules.username}
                   error={errors.username?.message}
@@ -72,6 +73,7 @@ export default function LoginForm({ role }) {
                   name="password"
                   type="password"
                   placeholder={TEXT.ENTER_PASSWORD}
+                  maxLength={15}
                   register={register}
                   validationRules={validationRules.password}
                   error={errors.password?.message}
