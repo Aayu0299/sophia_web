@@ -1,67 +1,168 @@
 "use client";
 
-import * as React from "react";
-import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
-import "react-day-picker/style.css";
+import React, { useState, useRef, useEffect } from "react";
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
 import { Icons } from "@/app/utils/Icons";
 import { TEXT } from "@/app/utils/Text";
 
-export const CommonDatePicker = ({ label, selected, onChange, error }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+const dateFormat = "DD/MM/YYYY";
 
-  const handleSelect = (date) => {
-    onChange(date);
+export const CommonDatePicker = ({
+  label,
+  selected,
+  onChange,
+  error,
+  disabled = false,
+  placeholder,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const datePickerRef = useRef(null);
+
+  // CLOSE WHEN CLICKING OUTSIDE
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        // Check if click is on Ant Design calendar popup
+        const antdCalendar = document.querySelector(".ant-picker-dropdown");
+        if (antdCalendar && antdCalendar.contains(e.target)) {
+          return; // Don't close if clicking inside calendar
+        }
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  // Close calendar when date is selected
+  const handleDateChange = (date) => {
+    onChange(date ? date.toDate() : null);
     setIsOpen(false);
   };
 
-  return (
-    <div className="relative">
-      <label className="font-medium text-[20px] text-(--black)">{label}</label>
+  // Handle input click
+  const handleInputClick = () => {
+    if (!disabled) {
+      setIsOpen(!isOpen);
+    }
+  };
 
+  // Convert selected date to dayjs format
+  const getDayjsValue = () => {
+    if (!selected) return null;
+    try {
+      // Handle both Date objects and dayjs objects
+      if (selected instanceof Date) {
+        return dayjs(selected);
+      }
+      return dayjs(selected);
+    } catch (error) {
+      console.error("Error parsing date:", error);
+      return null;
+    }
+  };
+
+  // Format display value
+  const getDisplayValue = () => {
+    if (!selected) return "";
+    try {
+      if (selected instanceof Date) {
+        return dayjs(selected).format(dateFormat);
+      }
+      return dayjs(selected).format(dateFormat);
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return "";
+    }
+  };
+
+  return (
+    <div className="relative w-full" ref={wrapperRef}>
+      {/* Label */}
+      {label && (
+        <label className="font-medium text-[20px] text-(--black) block mb-2">
+          {label}
+        </label>
+      )}
+
+      {/* Custom input wrapper */}
       <div
-        onClick={() => setIsOpen(!isOpen)}
-        className={`flex border-none items-center justify-between bg-white rounded-xl border transition-all duration-200 cursor-pointer 
-          hover:border-(--darkblue) focus-within:border-(--darkblue) 
-          [box-shadow:var(--boxshadow-input)] mt-2`}
+        onClick={handleInputClick}
+        className={`flex items-center justify-between bg-white rounded-xl cursor-pointer mt-2
+          transition-all duration-200 
+          ${error ? "border-(--redshade)" : "border-gray-300"}
+         
+          [box-shadow:var(--boxshadow-input)]`}
       >
         <input
           readOnly
-          value={selected ? format(selected, "dd/MM/yyyy") : ""}
-          placeholder={TEXT.ENTER_BOD}
-          className="w-full h-[58px] text-[16px] px-3 bg-transparent outline-none  placeholder:text-(--grayshade) rounded-xl "
+          value={getDisplayValue()}
+          placeholder={placeholder || TEXT.ENTER_BOD}
+          disabled={disabled}
+          className="w-full h-[58px] text-[16px] px-3 bg-transparent 
+                     outline-none placeholder:text-(--grayshade) rounded-xl
+                     cursor-pointer"
+          aria-label={label || "Date picker"}
+          aria-expanded={isOpen}
+          aria-haspopup="true"
         />
+
         <Icons.SlCalender
           size={22}
-          className="text-gray-500 mr-4 pointer-events-none"
+          className={`text-gray-500 mr-4 ${disabled ? "opacity-50" : ""}`}
+          aria-hidden="true"
         />
       </div>
 
-      {isOpen && (
-        <div className="absolute z-10 bg-white shadow-lg rounded-xl mt-2 border border-gray-200 p-2">
-          <DayPicker
-            mode="single"
-            selected={selected}
-            onSelect={handleSelect}
-            styles={{
-              caption: { color: "var(--darkblue)", fontWeight: 600 },
-              head_cell: { color: "#004396" },
-              day: { borderRadius: "8px", fontSize: "14px" },
-              day_selected: {
-                backgroundColor: "var(--darkblue)",
-                color: "white",
-              },
-              day_today: {
-                border: "1px solid var(--darkblue)",
-                fontWeight: 600,
-              },
-              day_outside: { color: "#d1d5db" },
-            }}
-          />
-        </div>
-      )}
+      {/* Hidden DatePicker for popup - positioned absolutely to trigger popup */}
+      <div
+        className="absolute"
+        style={{
+          top: 0,
+          left: 0,
+          width: 0,
+          height: 0,
+          overflow: "hidden",
+          visibility: "hidden",
+        }}
+      >
+        <DatePicker
+          ref={datePickerRef}
+          open={isOpen}
+          onChange={handleDateChange}
+          onOpenChange={setIsOpen}
+          value={getDayjsValue()}
+          format={dateFormat}
+          getPopupContainer={() => wrapperRef.current || document.body}
+          classNames={{
+            popup: {
+              root: "custom-calendar-popup",
+            },
+          }}
+          disabled={disabled}
+          allowClear={false}
+          showToday={true}
+          placeholder={placeholder || TEXT.ENTER_BOD}
+          disabledDate={(current) => current && current > dayjs().endOf("day")}
+        />
+      </div>
 
-      {error && <p className="mt-2 text-[12px] text-(--redshade)">{error}</p>}
+      {/* Error message */}
+      {error && (
+        <p className="mt-2 text-[12px] text-(--redshade)" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 };

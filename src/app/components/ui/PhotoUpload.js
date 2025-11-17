@@ -44,7 +44,7 @@ export const CommonIDPhotoUpload = ({ label, image, setImage, sublabel }) => {
 
       {/* Upload Box */}
       <div
-        className={`relative  bg-white rounded-xl [box-shadow:var(--boxshadow-input)] h-[206px]
+        className={`relative  bg-white rounded-xl [box-shadow:var(--boxshadow-input)] h-auto min-h-[206px]
   [box-shadow:var(--boxshadow-input)] cursor-pointer overflow-hidden`}
         onClick={() => !image && fileInputRef.current?.click()}
       >
