@@ -66,6 +66,7 @@ export default function LoginForm({ role }) {
                   validationRules={validationRules.username}
                   error={errors.username?.message}
                   onKeyDown={handleSpace}
+                  isPHI
                 />
 
                 <InputField

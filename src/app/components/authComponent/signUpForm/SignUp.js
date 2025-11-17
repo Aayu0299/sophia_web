@@ -114,7 +114,7 @@ export default function SignUp({ role }) {
     <div className="bg-(--lightblue) p-[30px]">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-12">
         <div className="w-full p-4 lg:p-10 h-[calc(100vh-60px)] overflow-y-auto [box-shadow:var(--shadow-form)] rounded-[5px] bg-(--white) scrollbar-hide">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" noValidate>
             <h1 className="[text-shadow:0px_2px_2px_0px_#00000066] text-(--lightblack) font-black text-[25px] sm:text-[29px] lg:text-[40px] text-center">
               {TEXT.CREATE_ACCOUNT}
             </h1>
@@ -164,6 +164,7 @@ export default function SignUp({ role }) {
                 register={register}
                 validationRules={validationRules.fullName}
                 onKeyDown={handleKeyPress}
+                isPHI
               />
 
               <InputField
@@ -175,6 +176,7 @@ export default function SignUp({ role }) {
                 validationRules={validationRules.email}
                 error={errors.email?.message}
                 onKeyDown={handleSpace}
+                isPHI
               />
 
               {/* Datepicker Field*/}
@@ -183,6 +185,7 @@ export default function SignUp({ role }) {
                   label={TEXT.BIRTH_DATE}
                   selected={date}
                   onChange={setDate}
+                  isPHI
                   // error={!date ? TEXT.BOD_REQUIRED : ""}
                 />
               )}
@@ -194,6 +197,7 @@ export default function SignUp({ role }) {
                 value={dialCode + phoneNo}
                 defaultCountry="us"
                 error={errors.phoneNumber?.message}
+                isPHI
                 onChange={(value, country) => {
                   const dial = country.dialCode;
                   const phone = value.slice(dial.length);
@@ -224,6 +228,7 @@ export default function SignUp({ role }) {
                   validationRules={validationRules.mrnNumber}
                   error={errors.mrnNumber?.message}
                   onKeyDown={handleSpace}
+                  isPHI
                 />
               )}
 
@@ -233,6 +238,7 @@ export default function SignUp({ role }) {
                 type="password"
                 placeholder={TEXT.ENTER_PASSWORD_TEXT}
                 maxLength={15}
+                autoComplete="new-password"
                 register={register}
                 validationRules={validationRules.password}
                 error={errors.password?.message}
@@ -244,6 +250,7 @@ export default function SignUp({ role }) {
                 type="password"
                 placeholder={TEXT.ENTER_CNF_PASSWORD}
                 maxLength={15}
+                autoComplete="new-password"
                 register={register}
                 validationRules={{
                   ...validationRules?.confirmPassword,
@@ -312,6 +319,7 @@ export default function SignUp({ role }) {
                     placeholder={TEXT.YOUR_ANSWER}
                     register={register}
                     onKeyDown={handleKeyPress}
+                    isPHI
                   />
                 )}
 
@@ -329,6 +337,7 @@ export default function SignUp({ role }) {
                     placeholder={TEXT.YOUR_ANSWER}
                     register={register}
                     onKeyDown={handleKeyPress}
+                    isPHI
                   />
                 )}
               </div>
@@ -350,6 +359,7 @@ export default function SignUp({ role }) {
                     maxLength={50}
                     register={register}
                     onKeyDown={handleKeyPress}
+                    isPHI
                   />
                   <InputField
                     label={TEXT.EMAIL}
@@ -358,6 +368,7 @@ export default function SignUp({ role }) {
                     maxLength={100}
                     register={register}
                     onKeyDown={handleSpace}
+                    isPHI
                   />
                   {/* Phone Number Field*/}
                   <CommonPhoneInput
@@ -365,6 +376,7 @@ export default function SignUp({ role }) {
                     label={TEXT.PHONE_NUMBER}
                     value={secondaryDialCode + secondaryPhone}
                     defaultCountry="us"
+                    isPHI
                     onChange={(value, country) => {
                       const dial = country.dialCode;
                       const phone = value.slice(dial.length);

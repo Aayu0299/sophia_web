@@ -56,6 +56,7 @@ export default function ForgotPassword({ role }) {
             error={errors.email?.message}
             onKeyDown={handleSpace}
             className="max-w-[450px] mx-auto my-10"
+            isPHI
           />
 
           <Button

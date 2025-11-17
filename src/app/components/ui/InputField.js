@@ -22,11 +22,25 @@ export default function InputField({
   numberType = false,
   maxLength,
   watch,
+  isPHI = false,
+  inputMode,
+  ariaLabel,
   ...rest
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
   const inputType = isPassword ? (showPassword ? "text" : "password") : type;
+  const computedAutoComplete =
+    autoComplete || (isPHI && !isPassword ? "off" : undefined);
+  const errorId = error ? `${name}-error` : undefined;
+  const phiHandlers = isPHI
+    ? {
+        onCopy: (e) => e.preventDefault(),
+        onCut: (e) => e.preventDefault(),
+        onPaste: (e) => e.preventDefault(),
+        "data-phi": "true",
+      }
+    : {};
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -45,11 +59,18 @@ export default function InputField({
           type={inputType}
           placeholder={placeholder}
           disabled={disabled}
-          autoComplete={autoComplete || "off"}
+          autoComplete={computedAutoComplete || "off"}
           maxLength={maxLength}
           autoCorrect="off"
           spellCheck={false}
+          autoCapitalize="none"
           onKeyDown={onKeyDown}
+          inputMode={inputMode}
+          aria-invalid={Boolean(error)}
+          aria-describedby={errorId}
+          aria-label={ariaLabel || label || name}
+          aria-required={validationRules?.required ? "true" : undefined}
+          {...phiHandlers}
           {...(numberType && {
             onInput: (e) => {
               e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -87,7 +108,11 @@ export default function InputField({
       </div>
 
       {error && (
-        <p className="mt-2 text-[12px] text-(--redshade)" role="alert">
+        <p
+          id={errorId}
+          className="mt-2 text-[12px] text-(--redshade)"
+          role="alert"
+        >
           {error}
         </p>
       )}
@@ -102,6 +127,7 @@ export const CommonPhoneInput = ({
   defaultCountry,
   onChange,
   error,
+  isPHI = false,
 }) => {
   return (
     <div>
@@ -121,6 +147,10 @@ export const CommonPhoneInput = ({
             autoCorrect: "off",
             spellCheck: "false",
             autoFocus: false,
+            "data-phi": isPHI ? "true" : undefined,
+            onCopy: isPHI ? (e) => e.preventDefault() : undefined,
+            onCut: isPHI ? (e) => e.preventDefault() : undefined,
+            onPaste: isPHI ? (e) => e.preventDefault() : undefined,
           }}
           containerClass="!w-full"
           buttonClass="!border-none !bg-transparent !pl-3 !rounded-l-xl"
