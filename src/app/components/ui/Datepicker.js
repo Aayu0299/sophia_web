@@ -15,6 +15,7 @@ export const CommonDatePicker = ({
   error,
   disabled = false,
   placeholder,
+  isPHI = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
@@ -61,13 +62,11 @@ export const CommonDatePicker = ({
   const getDayjsValue = () => {
     if (!selected) return null;
     try {
-      // Handle both Date objects and dayjs objects
       if (selected instanceof Date) {
         return dayjs(selected);
       }
       return dayjs(selected);
-    } catch (error) {
-      console.error("Error parsing date:", error);
+    } catch (_error) {
       return null;
     }
   };
@@ -80,8 +79,7 @@ export const CommonDatePicker = ({
         return dayjs(selected).format(dateFormat);
       }
       return dayjs(selected).format(dateFormat);
-    } catch (error) {
-      console.error("Error formatting date:", error);
+    } catch (_error) {
       return "";
     }
   };
@@ -109,12 +107,14 @@ export const CommonDatePicker = ({
           value={getDisplayValue()}
           placeholder={placeholder || TEXT.ENTER_BOD}
           disabled={disabled}
+          autoComplete="off"
           className="w-full h-[58px] text-[16px] px-3 bg-transparent 
                      outline-none placeholder:text-(--grayshade) rounded-xl
                      cursor-pointer"
           aria-label={label || "Date picker"}
           aria-expanded={isOpen}
           aria-haspopup="true"
+          data-phi={isPHI ? "true" : undefined}
         />
 
         <Icons.SlCalender

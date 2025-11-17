@@ -45,7 +45,7 @@ export default function InputField({
           type={inputType}
           placeholder={placeholder}
           disabled={disabled}
-          autoComplete={autoComplete}
+          autoComplete={autoComplete || "off"}
           maxLength={maxLength}
           autoCorrect="off"
           spellCheck={false}
@@ -117,7 +117,9 @@ export const CommonPhoneInput = ({
           countryCodeEditable={false}
           inputProps={{
             name,
-            required: true,
+            autoComplete: "off",
+            autoCorrect: "off",
+            spellCheck: "false",
             autoFocus: false,
           }}
           containerClass="!w-full"
