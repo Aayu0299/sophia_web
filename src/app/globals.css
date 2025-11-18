@@ -15,7 +15,12 @@
   --blueshade: #00439612;
   --blackshade: #252525;
   --slategray: #c4c4c4;
-  --redshade: #e7000b;
+  --redshade: #ec1d24;
+  --graycolor: #dedede;
+  --grayShadeborder: #bababa;
+  --bgColor: #f6f6f6;
+  --iconColor: #797979;
+  --sidebarText: #555555;
 
   /* Add your box shadow variable here */
   --boxshadow-input: 0px 2px 6px 0px #0000002e;

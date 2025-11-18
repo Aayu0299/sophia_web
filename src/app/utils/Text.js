@@ -118,4 +118,8 @@ export const TEXT = {
   OPTIONAL: "Optional",
   NPI_TEXT: "Your NPI will be verified against the NPPS registry",
   ACCEPT_TERMS: "Please accept all the terms before continuing.",
+  DASHBOARD: "Dashboard",
+  FAMILY_FRIEND_CHAT: "Family & Friend Chat",
+  SETTINGS: "Settings",
+  RESEND_OTP: "Resend OTP",
 };

@@ -117,7 +117,9 @@ export default function ResetPassword({ role }) {
             onKeyDown={handleSpace}
             className="max-w-[450px] mx-auto my-8"
           />
-
+          <p className="text-center underline text-(--darkblue) font-semibold text-[17px] mb-3">
+            {TEXT.RESEND_OTP}
+          </p>
           <Button
             type="submit"
             disabled={isSubmitting}

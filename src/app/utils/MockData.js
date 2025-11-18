@@ -44,3 +44,9 @@ export const genericRoleOptions = [
   { label: "Support Staff", value: "support_staff" },
   { label: "Guest", value: "guest" },
 ];
+
+export const sidebarNavItems = [
+  { id: 1, link: "/dashboard", label: TEXT.DASHBOARD },
+  { id: 2, link: "#", label: TEXT.FAMILY_FRIEND_CHAT },
+  { id: 3, link: "#", label: TEXT.SETTINGS },
+];

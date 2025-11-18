@@ -7,6 +7,7 @@ import doctorLogin from "../../../public/doctor-image.webp";
 import familyLogin from "../../../public/family-image.webp";
 import caregiverLogin from "../../../public/caregiver-discusstion.webp";
 import uploadIcon from "../../../public/upload-icon.svg";
+import profile from "../../../public/profile.png";
 
 export const images = {
   logo,
@@ -18,4 +19,5 @@ export const images = {
   familyLogin,
   caregiverLogin,
   uploadIcon,
+  profile,
 };
