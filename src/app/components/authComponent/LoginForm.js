@@ -9,9 +9,12 @@ import { images } from "@/app/utils/Images";
 import { TEXT } from "@/app/utils/Text";
 import { handleSpace } from "@/app/utils/InputFunction";
 import { ROUTES } from "@/app/utils/Constant";
+import { useRouter } from "next/navigation";
 
 //---------function for login form-------------
 export default function LoginForm({ role }) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -31,7 +34,9 @@ export default function LoginForm({ role }) {
   // fallback to default if role not matched
   const imageSrc = roleImages[role];
 
-  const onSubmit = async (formData) => {};
+  const onSubmit = async (formData) => {
+    router.push(`/${role}/${ROUTES.DASHBOARD}`);
+  };
 
   return (
     <div className="min-h-screen bg-(--lightblue)">

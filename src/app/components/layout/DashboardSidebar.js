@@ -1,26 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sidebarNavItems } from "@/app/utils/MockData";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
+import { Icons } from "@/app/utils/Icons";
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({ open, setOpen }) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const pathParts = pathname.split("/");
+  const activeSegment = pathParts[2];
 
   return (
     <>
-      {/* -------- Mobile Top Bar with Hamburger -------- */}
-      <div className="md:hidden w-full h-14 flex items-center px-4 bg-white sticky top-0 z-40">
-        <button onClick={() => setOpen(true)}>
-          <HiMenuAlt3 className="w-7 h-7 text-(--darkblue)" />
-        </button>
-      </div>
-
       {/* -------- Mobile Sidebar Overlay -------- */}
       <div
         className={`fixed inset-0 bg-black/40 z-40 transition-opacity md:hidden ${
@@ -41,7 +34,7 @@ export default function DashboardSidebar() {
         `}
       >
         {/* Close Button for Mobile */}
-        <div className="md:hidden flex justify-between items-center p-4">
+        <div className="md:hidden flex justify-between items-center p-4 border-b border-[#F4F4F4]">
           <Image
             src={images.logo}
             alt="Sophia logo"
@@ -51,13 +44,13 @@ export default function DashboardSidebar() {
             className="w-full max-w-[100px] h-full cursor-pointer"
           />
           <button onClick={() => setOpen(false)}>
-            <HiX className="w-5 h-5 text-(--darkblue)" />
+            <Icons.ImCancelCircle className="w-5 h-5 text-(--redshade)" />
           </button>
         </div>
 
         <nav className="pt-4 space-y-1">
           {sidebarNavItems.map((item, index) => {
-            const isActive = pathname === item.link;
+            const isActive = activeSegment === item?.link.replace("/", "");
             const hasNext = index < sidebarNavItems.length - 1;
 
             return (

@@ -3,7 +3,7 @@ import { images } from "@/app/utils/Images";
 import { Icons } from "@/app/utils/Icons";
 
 //--------funtion for after login header--------
-export default function DashboardHeader() {
+export default function AuthHeader({ setOpen }) {
   return (
     <header className="w-full bg-white border-b border-(--graycolor)">
       <div className="mx-auto px-4 lg:px-8 flex items-center justify-between h-16 sm:h-20">
@@ -16,6 +16,12 @@ export default function DashboardHeader() {
             priority
             className="w-full max-w-[100px] sm:max-w-[169px] h-auto cursor-pointer"
           />
+          {/* -------- Mobile Top Bar with Hamburger -------- */}
+          <div className="md:hidden w-full h-14 flex items-center">
+            <button onClick={() => setOpen(true)}>
+              <Icons.CgMenuRound className="w-7 h-7 text-(--redshade)" />
+            </button>
+          </div>
         </div>
 
         <div className="flex items-center gap-4">

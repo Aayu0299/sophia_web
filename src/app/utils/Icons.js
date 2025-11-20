@@ -6,6 +6,10 @@ import { ImCross } from "react-icons/im";
 import { SlCalender } from "react-icons/sl";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { BsChatTextFill } from "react-icons/bs";
+import { ImCancelCircle } from "react-icons/im";
+import { CgMenuRound } from "react-icons/cg";
+import { LuUserCheck } from "react-icons/lu";
+import { RiStethoscopeLine } from "react-icons/ri";
 
 export const Icons = {
   FiMenu,
@@ -20,4 +24,8 @@ export const Icons = {
   FaBell,
   HiOutlineCalendar,
   BsChatTextFill,
+  ImCancelCircle,
+  CgMenuRound,
+  LuUserCheck,
+  RiStethoscopeLine,
 };

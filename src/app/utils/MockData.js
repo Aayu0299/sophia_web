@@ -46,7 +46,7 @@ export const genericRoleOptions = [
 ];
 
 export const sidebarNavItems = [
-  { id: 1, link: "/dashboard", label: TEXT.DASHBOARD },
+  { id: 1, link: ROUTES.DASHBOARD, label: TEXT.DASHBOARD },
   { id: 2, link: "#", label: TEXT.FAMILY_FRIEND_CHAT },
   { id: 3, link: "#", label: TEXT.SETTINGS },
 ];

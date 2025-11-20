@@ -9,6 +9,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
   SIGNUP: "/sign-up",
+  DASHBOARD: "/dashboard",
 };
 
 export const DEVICE_TYPE = {};

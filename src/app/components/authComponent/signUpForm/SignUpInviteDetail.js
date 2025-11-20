@@ -13,7 +13,7 @@ export default function SignUpInviteDetail({ role, isPatientOrFamily }) {
   const router = useRouter();
 
   return (
-    <div className="w-full sm:mt-8 xl:p-[30px]">
+    <div className="w-full sm:mt-6 xl:p-[30px]">
       <div className="sm:flex items-center mb-10 hidden">
         <Button
           onClick={() => router.push(`/${role}/${ROUTES.LOGIN}`)}
