@@ -6,6 +6,7 @@ import { sidebarNavItems } from "@/app/utils/MockData";
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
 import { Icons } from "@/app/utils/Icons";
+import { ROUTES } from "@/app/utils/Constant";
 
 export default function DashboardSidebar({ open, setOpen }) {
   const pathname = usePathname();
@@ -25,7 +26,7 @@ export default function DashboardSidebar({ open, setOpen }) {
       {/* -------- Sidebar Panel (Desktop + Mobile) -------- */}
       <aside
         className={`
-          fixed top-0 left-0 z-50
+          fixed top-0 left-0 z-40
           bg-white border-r border-(--graycolor) shadow-sm 
           w-60 lg:w-64 min-h-screen
           transform transition-transform duration-300
@@ -35,14 +36,16 @@ export default function DashboardSidebar({ open, setOpen }) {
       >
         {/* Close Button for Mobile */}
         <div className="md:hidden flex justify-between items-center p-4 border-b border-[#F4F4F4]">
-          <Image
-            src={images.logo}
-            alt="Sophia logo"
-            width={100}
-            height={50}
-            priority
-            className="w-full max-w-[100px] h-full cursor-pointer"
-          />
+          <Link href={ROUTES.HOME}>
+            <Image
+              src={images.logo}
+              alt="Sophia logo"
+              width={100}
+              height={50}
+              priority
+              className="w-full max-w-[100px] h-full cursor-pointer"
+            />
+          </Link>
           <button onClick={() => setOpen(false)}>
             <Icons.ImCancelCircle className="w-5 h-5 text-(--redshade)" />
           </button>

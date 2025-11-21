@@ -10,6 +10,7 @@ export const ROUTES = {
   RESET_PASSWORD: "/reset-password",
   SIGNUP: "/sign-up",
   DASHBOARD: "/dashboard",
+  FAMILY_CHAT: "/family-chat",
 };
 
 export const DEVICE_TYPE = {};

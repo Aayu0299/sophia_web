@@ -169,3 +169,71 @@ export const CommonPhoneInput = ({
     </div>
   );
 };
+
+export function TextareaField({
+  label,
+  name,
+  placeholder = "",
+  error,
+  register,
+  validationRules = {},
+  disabled = false,
+  className = "",
+  maxLength,
+  isPHI = false,
+  rows = 4,
+  ariaLabel,
+  ...rest
+}) {
+  // HIPAA PHI handlers (block copy/cut/paste)
+  const phiHandlers = isPHI
+    ? {
+        onCopy: (e) => e.preventDefault(),
+        onCut: (e) => e.preventDefault(),
+        onPaste: (e) => e.preventDefault(),
+        "data-phi": "true",
+      }
+    : {};
+
+  return (
+    <div className={`w-full `}>
+      {label && (
+        <label
+          htmlFor={name}
+          className="font-medium text-[16px] text-(--blackshade) mt-4"
+        >
+          {label}
+        </label>
+      )}
+
+      <div className="mt-2">
+        <textarea
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          disabled={disabled}
+          maxLength={maxLength}
+          autoCorrect="off"
+          autoCapitalize="none"
+          spellCheck={false}
+          rows={rows}
+          aria-label={ariaLabel || label || name}
+          aria-required={validationRules?.required ? "true" : undefined}
+          {...phiHandlers}
+          className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 py-3 outline-none bg-white placeholder:text-(--grayshade) ${className}`}
+          {...(register
+            ? register(name, {
+                ...validationRules,
+                validate: validationRules.validate
+                  ? (value) => validationRules.validate(value)
+                  : undefined,
+              })
+            : {})}
+          {...rest}
+        />
+      </div>
+
+      {error && <p className="mt-2 text-[12px] text-(--redshade)">{error}</p>}
+    </div>
+  );
+}

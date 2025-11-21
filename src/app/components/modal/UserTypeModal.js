@@ -2,6 +2,7 @@ import { TEXT } from "@/app/utils/Text";
 import Button from "../ui/Button";
 import Image from "next/image";
 import { Icons } from "@/app/utils/Icons";
+import { userTypeOptions } from "@/app/utils/MockData";
 
 //------function for select user type modal--------------
 export default function UserTypeModal({
@@ -12,33 +13,6 @@ export default function UserTypeModal({
   onApply,
 }) {
   if (!open) return null;
-
-  const options = [
-    {
-      key: "patient",
-      label: TEXT.PATIENT,
-      icon: "/patient-icon-active.svg",
-      activeIcon: "/patient-icon-active.svg",
-    },
-    {
-      key: "family",
-      label: TEXT.FAMILY,
-      icon: "/family-icon-active.svg",
-      activeIcon: "/family-icon-active.svg",
-    },
-    {
-      key: "doctor",
-      label: TEXT.DOCTOR,
-      icon: "/doctor-icon-active.svg",
-      activeIcon: "/doctor-icon-active.svg",
-    },
-    {
-      key: "caregiver",
-      label: TEXT.CAREGIVER,
-      icon: "/caregiver-icon-active.svg",
-      activeIcon: "/caregiver-icon-active.svg",
-    },
-  ];
 
   return (
     <div>
@@ -58,7 +32,7 @@ export default function UserTypeModal({
             </p>
 
             <div className="grid grid-cols-2 gap-3 p-6">
-              {options.map((opt) => {
+              {userTypeOptions.map((opt) => {
                 const isActive = selected === opt.label;
                 return (
                   <button

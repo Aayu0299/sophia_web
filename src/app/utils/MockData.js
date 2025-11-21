@@ -6,6 +6,33 @@ export const navItems = () => [
   { id: 2, link: "#", label: TEXT.ABOUT },
 ];
 
+export const userTypeOptions = [
+  {
+    key: "patient",
+    label: TEXT.PATIENT,
+    icon: "/patient-icon-active.svg",
+    activeIcon: "/patient-icon-active.svg",
+  },
+  {
+    key: "family",
+    label: TEXT.FAMILY,
+    icon: "/family-icon-active.svg",
+    activeIcon: "/family-icon-active.svg",
+  },
+  {
+    key: "doctor",
+    label: TEXT.DOCTOR,
+    icon: "/doctor-icon-active.svg",
+    activeIcon: "/doctor-icon-active.svg",
+  },
+  {
+    key: "caregiver",
+    label: TEXT.CAREGIVER,
+    icon: "/caregiver-icon-active.svg",
+    activeIcon: "/caregiver-icon-active.svg",
+  },
+];
+
 export const securityQuestionOptions = [
   { value: "birthCity", label: "What city were you born in?" },
   { value: "petName", label: "What was your first pet’s name?" },
@@ -49,4 +76,43 @@ export const sidebarNavItems = [
   { id: 1, link: ROUTES.DASHBOARD, label: TEXT.DASHBOARD },
   { id: 2, link: "#", label: TEXT.FAMILY_FRIEND_CHAT },
   { id: 3, link: "#", label: TEXT.SETTINGS },
+];
+
+export const notes = [
+  {
+    id: 1,
+    author: "Sarah (You)",
+    time: "Today, 9:15 AM",
+    message:
+      "I've been experiencing some dizziness when I stand up. Is this related to my blood pressure medication?",
+  },
+  {
+    id: 2,
+    author: "Dr. Johnson",
+    time: "Today, 11:30 AM",
+    message:
+      "The dizziness could be related to your medication. I’ll review your dosage during my next visit. In the meantime, please stand up slowly and stay hydrated.",
+    extraBox:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    replyText: "Responding to your question about dizziness",
+    showReplyButton: true,
+  },
+  {
+    id: 3,
+    author: "Mom",
+    time: "Yesterday, 2:45 PM",
+    message:
+      "Sarah mentioned she’s been having trouble sleeping. Could this be affecting her recovery?",
+  },
+];
+
+export const doctors = [
+  {
+    name: "Dr. Michael Roberts",
+    specialty: "Cardiologist",
+  },
+  {
+    name: "Dr. Jennifer Lee",
+    specialty: "Endocrinologist",
+  },
 ];

@@ -208,6 +208,7 @@ export default function SignUp({ role }) {
                   trigger("phoneNumber");
                 }}
               />
+
               {isDoctorOrCareGiver && (
                 <CustomSelect
                   label={TEXT.SPECIALIZATION}

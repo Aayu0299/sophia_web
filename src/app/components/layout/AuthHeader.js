@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
 import { Icons } from "@/app/utils/Icons";
+import Link from "next/link";
+import { ROUTES } from "@/app/utils/Constant";
 
 //--------funtion for after login header--------
 export default function AuthHeader({ setOpen }) {
@@ -8,14 +10,16 @@ export default function AuthHeader({ setOpen }) {
     <header className="w-full bg-white border-b border-(--graycolor)">
       <div className="mx-auto px-4 lg:px-8 flex items-center justify-between h-16 sm:h-20">
         <div className="flex items-center gap-3 min-w-0">
-          <Image
-            src={images.logo}
-            alt="Sophia logo"
-            width={169}
-            height={50}
-            priority
-            className="w-full max-w-[100px] sm:max-w-[169px] h-auto cursor-pointer"
-          />
+          <Link href={ROUTES.HOME}>
+            <Image
+              src={images.logo}
+              alt="Sophia logo"
+              width={169}
+              height={50}
+              priority
+              className="w-full  sm:max-w-[169px] h-auto cursor-pointer"
+            />
+          </Link>
           {/* -------- Mobile Top Bar with Hamburger -------- */}
           <div className="md:hidden w-full h-14 flex items-center">
             <button onClick={() => setOpen(true)}>
