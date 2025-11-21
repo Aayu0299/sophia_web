@@ -23,13 +23,13 @@ export default function AuthHeader({ setOpen }) {
           {/* -------- Mobile Top Bar with Hamburger -------- */}
           <div className="md:hidden w-full h-14 flex items-center">
             <button onClick={() => setOpen(true)}>
-              <Icons.CgMenuRound className="w-7 h-7 text-(--redshade)" />
+              <Icons.CgMenuRound className="w-7 h-7 text-(--redshade)!" />
             </button>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="sm:w-[50px] sm:h-[50px] w-10 h-10  rounded-full overflow-hidden border border-(--grayShadeborder) ">
+          <div className="sm:w-[50px] sm:h-[50px] w-10 h-10 rounded-full overflow-hidden">
             <Image
               src={images.profile}
               alt="Profile image"
@@ -43,7 +43,7 @@ export default function AuthHeader({ setOpen }) {
           <button className="relative sm:w-[50px] sm:h-[50px] w-10 h-10 flex items-center justify-center rounded-full border border-(--grayShadeborder) bg-(--bgColor)">
             <Icons.FaBell className="w-5 h-5 text-(-iconColor)" />
 
-            <span className="absolute -top-1 -right-1 bg-[--redshade] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-1 -right-1 bg-(--redshade) text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
               3
             </span>
           </button>

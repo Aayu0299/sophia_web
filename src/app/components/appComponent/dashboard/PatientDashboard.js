@@ -25,7 +25,7 @@ export default function PatientDashboard() {
   return (
     <div className="min-h-screen">
       {/* Patient details */}
-      <div className="bg-white [box-shadow:var(--shadow-form)]">
+      <div className="bg-white rounded-[5px] [box-shadow:var(--shadow-form)]">
         <div className="flex max-[400px]:flex-col flex-row items-center max-[400px]:items-start justify-between gap-4 p-5">
           <div className="flex items-center gap-4">
             <div className="sm:w-[50px] sm:h-[50px] w-10 h-10 rounded-full overflow-hidden border border-(--grayShadeborder) ">
@@ -352,7 +352,7 @@ p-2 sm:p-4 rounded-[5px] font-normal text-[12px] sm:text-[14px] text-(--blackSha
 
         <Button
           type="submit"
-          className="px-4 py-0! h-10 font-semibold text-[16px]! rounded-[3px]! w-full md:w-auto"
+          className="px-4 py-0! h-10 font-semibold text-[16px]! rounded-[3px]! w-full max-w-[210px]"
         >
           {TEXT.SEND_INVITE}
         </Button>
