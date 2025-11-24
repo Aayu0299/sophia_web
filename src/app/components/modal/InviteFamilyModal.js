@@ -1,4 +1,3 @@
-"use client";
 import { TEXT } from "@/app/utils/Text";
 import Button from "../ui/Button";
 import { Icons } from "@/app/utils/Icons";
@@ -12,6 +11,8 @@ import { relationshipOptions } from "@/app/utils/MockData";
 
 //------function for invite family and friends modal--------------
 export default function InviteFamilyModal({ open, onClose }) {
+  if (!open) return null;
+
   const [phoneNo, setPhoneNo] = useState("");
   const [dialCode, setDialCode] = useState("");
   const [countryCode, setCountryCode] = useState("us");
@@ -20,35 +21,39 @@ export default function InviteFamilyModal({ open, onClose }) {
   const {
     register,
     handleSubmit,
+    setValue,
+    trigger,
     formState: { errors, isSubmitting },
   } = useForm({
     mode: "onSubmit",
     defaultValues: { name: "", phoneNumber: "", email: "" },
   });
 
-  if (!open) return null;
+  useEffect(() => {
+    register("phoneNumber", validationRules.phoneNumber);
+  }, [register]);
 
   const onSubmit = async (formData) => {};
 
   return (
     <div>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-[582px] rounded-[10px] bg-white max-h-screen overflow-y-auto overflow-x-hidden">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 overflow-y-auto scrollbar-hide">
+          <div className="bg-white w-full max-w-[582px] rounded-[10px] m-3 mt-[30px]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E3E3E3]">
               <h2 className="font-semibold text-[18px] text-(--black)">
                 {TEXT.INVITE_FAMILY_OR_FRIEND}
               </h2>
               <Icons.ImCross onClick={onClose} className="cursor-pointer" />
             </div>
-            <p className="font-normal text-[16px] text-center text-(--darkgray) p-4 w-full max-w-[427px] mx-auto">
-              {TEXT.INVITE_SOMEONE}
-            </p>
-
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="mt-2 space-y-4 p-4"
             >
+              <p className="font-normal text-[16px] text-center text-(--darkgray) px-4 w-full max-w-[427px] mx-auto">
+                {TEXT.INVITE_SOMEONE}
+              </p>
+
               <InputField
                 label={TEXT.NAME}
                 name="name"
@@ -85,7 +90,7 @@ export default function InviteFamilyModal({ open, onClose }) {
                 placeholder={TEXT.ENTER_EMAIL}
                 register={register}
                 maxLength={100}
-                validationRules={validationRules.email}
+                validationRules={validationRules?.email}
                 error={errors.email?.message}
                 onKeyDown={handleSpace}
                 isPHI
@@ -104,16 +109,17 @@ export default function InviteFamilyModal({ open, onClose }) {
                   {TEXT.EXAMPLE_RELATION}
                 </p>
               </div>
-
               <div className="flex sm:flex-row flex-col justify-around gap-4 mt-6">
                 <Button
                   type="submit"
+                  disabled={isSubmitting}
                   className="px-4 font-semibold text-[16px]! rounded-[100px] w-full"
                 >
                   {TEXT.INVITE_BUTTON}
                 </Button>
                 <Button
                   type="button"
+                  onClick={onClose}
                   className="px-4 font-semibold text-[16px]! rounded-[100px] w-full bg-(--buttonBg)! text-(--darkgray)!"
                 >
                   {TEXT.CANCEL}

@@ -299,9 +299,9 @@ export default function PatientDashboard() {
         <Button
           type="button"
           className="px-2 lg:px-4 font-semibold text-[12px]! lg:text-[16px]! rounded-lg w-full"
-          // onClick={() => {
-          //   setIsInviteFamilyModalOpen(true);
-          // }}
+          onClick={() => {
+            setIsInviteFamilyModalOpen(true);
+          }}
         >
           <Icons.RiAddLargeFill className="inline-block mr-2 w-5 h-5 mb-[3px]" />
           {TEXT.INVITE_FRIEND}
@@ -324,7 +324,7 @@ export default function PatientDashboard() {
           className="flex gap-3 items-start bg-(--bgBoxColor) border border-(--borderGray)
 p-2 sm:p-4 rounded-[5px] font-normal text-[12px] sm:text-[14px] text-(--blackShade) mb-5"
         >
-          <Icons.MdOutlineFileUpload className="text-(--darkblue) w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 flex-shrink-0" />
+          <Icons.MdOutlineFileUpload className="text-(--darkblue) w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 shrink-0" />
 
           <span>
             By approving this invitation, you consent to share your medical
