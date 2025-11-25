@@ -2,16 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { sidebarNavItems } from "@/app/utils/MockData";
+import { navItemsForDoctor, navItemsForPatient } from "@/app/utils/MockData";
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
 import { Icons } from "@/app/utils/Icons";
-import { ROUTES } from "@/app/utils/Constant";
+import { ROUTES, USER_TYPE } from "@/app/utils/Constant";
 
-export default function DashboardSidebar({ open, setOpen }) {
+export default function DashboardSidebar({ open, setOpen, role }) {
   const pathname = usePathname();
   const pathParts = pathname.split("/");
   const activeSegment = pathParts[2];
+  const navItems =
+    role === USER_TYPE.PATIENT || role === USER_TYPE.FAMILY
+      ? navItemsForPatient
+      : navItemsForDoctor;
 
   return (
     <>
@@ -52,9 +56,9 @@ export default function DashboardSidebar({ open, setOpen }) {
         </div>
 
         <nav className="pt-4 space-y-1">
-          {sidebarNavItems.map((item, index) => {
+          {navItems?.map((item, index) => {
             const isActive = activeSegment === item?.link.replace("/", "");
-            const hasNext = index < sidebarNavItems.length - 1;
+            const hasNext = index < navItems?.length - 1;
 
             return (
               <div

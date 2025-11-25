@@ -72,9 +72,15 @@ export const genericRoleOptions = [
   { label: "Guest", value: "guest" },
 ];
 
-export const sidebarNavItems = [
+export const navItemsForPatient = [
   { id: 1, link: ROUTES.DASHBOARD, label: TEXT.DASHBOARD },
   { id: 2, link: "#", label: TEXT.FAMILY_FRIEND_CHAT },
+  { id: 3, link: "#", label: TEXT.SETTINGS },
+];
+
+export const navItemsForDoctor = [
+  { id: 1, link: ROUTES.DASHBOARD, label: TEXT.DASHBOARD },
+  { id: 2, link: "#", label: TEXT.CARE_TEAM },
   { id: 3, link: "#", label: TEXT.SETTINGS },
 ];
 

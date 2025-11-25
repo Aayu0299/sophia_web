@@ -4,15 +4,19 @@ import { images } from "@/app/utils/Images";
 import Image from "next/image";
 import Button from "../../ui/Button";
 import { TextareaField } from "../../ui/InputField";
-import { useForm } from "react-hook-form";
 import { handleKeyPress } from "@/app/utils/InputFunction";
 import { doctors, notes } from "@/app/utils/MockData";
 import { TEXT } from "@/app/utils/Text";
-import { useState } from "react";
 import InviteFamilyModal from "../../modal/InviteFamilyModal";
+import ReplyModal from "../../modal/ReplyModal";
+import CreateNoteModal from "../../modal/CreateNoteModal";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function PatientDashboard() {
   const [isInviteFamilyModalOpen, setIsInviteFamilyModalOpen] = useState(false);
+  const [replyModalOpen, setReplyModalOpen] = useState(false);
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
 
   const {
     register,
@@ -170,10 +174,16 @@ export default function PatientDashboard() {
             <Icons.FaRegQuestionCircle className="text-(--darkblue)" />
             {TEXT.ADD_NOTE_FOR_CARE_TEAM}
           </h2>
-          <button className="text-(--redshade) font-semibold text-[15px] flex items-center gap-2 mt-3 sm:mt-0">
+          <div className="text-(--redshade) font-semibold text-[15px] flex items-center gap-2 mt-3 sm:mt-0 cursor-pointer">
             <Icons.MdOutlineKeyboardVoice className="bg-(--redshade) rounded-full text-white w-[35px] h-[35px] p-1" />
-            {TEXT.ADD_NOTE}
-          </button>
+            <span
+              onClick={() => {
+                setNoteModalOpen(true);
+              }}
+            >
+              {TEXT.ADD_NOTE}
+            </span>
+          </div>
         </div>
 
         <p className="font-normal text-[14px] text-(--blackshade) mb-5">
@@ -267,7 +277,12 @@ export default function PatientDashboard() {
                   <Icons.FaReply className="w-4 h-4 shrink-0" />{" "}
                   {note.replyText}
                 </p>
-                <button className="text-(--darkblue) font-medium text-[13px] flex items-center gap-2 mt-8 sm:mt-0">
+                <button
+                  className="text-(--darkblue) font-medium text-[13px] flex items-center gap-2 mt-8 sm:mt-0 cursor-pointer"
+                  onClick={() => {
+                    setReplyModalOpen(true);
+                  }}
+                >
                   <Icons.FaReply /> {TEXT.REPLY}
                 </button>
               </div>
@@ -357,10 +372,17 @@ p-2 sm:p-4 rounded-[5px] font-normal text-[12px] sm:text-[14px] text-(--blackSha
           {TEXT.SEND_INVITE}
         </Button>
       </div>
-
       <InviteFamilyModal
         open={isInviteFamilyModalOpen}
         onClose={() => setIsInviteFamilyModalOpen(false)}
+      />
+      <ReplyModal
+        open={replyModalOpen}
+        onClose={() => setReplyModalOpen(false)}
+      />
+      <CreateNoteModal
+        open={noteModalOpen}
+        onClose={() => setNoteModalOpen(false)}
       />
     </div>
   );

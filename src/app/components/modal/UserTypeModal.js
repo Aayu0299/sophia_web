@@ -18,8 +18,8 @@ export default function UserTypeModal({
     <div>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-[582px] rounded-[10px] bg-white">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#E3E3E3]">
+          <div className="w-full max-w-[582px] rounded-[10px] bg-white p-4">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E3E3E3]">
               <h2 className="font-semibold text-[18px] text-(--black)">
                 {TEXT.SELECT_USERTYPE}
               </h2>

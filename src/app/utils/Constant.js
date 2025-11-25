@@ -13,4 +13,11 @@ export const ROUTES = {
   FAMILY_CHAT: "/family-chat",
 };
 
+export const USER_TYPE = {
+  PATIENT: "patient",
+  FAMILY: "family",
+  DOCTOR: "doctor",
+  CAREGIVER: "caregiver",
+};
+
 export const DEVICE_TYPE = {};

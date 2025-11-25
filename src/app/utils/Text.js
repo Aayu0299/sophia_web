@@ -149,4 +149,13 @@ export const TEXT = {
   INVITE_SOMEONE:
     "Invite someone to join your chat and receive medical updates.",
   EXAMPLE_RELATION: "e.g., Sister, Friend, Spouse",
+  NOTE: "Note",
+  TEXT_HERE: "Text here",
+  CREATE_NOTE: "Create Note",
+  CARE_TEAM: "Care Team Chat",
+  NOTE_REQUIRED: "Note is required.",
+  NOTE_MIN: "Note must be at least 2 characters long.",
+  NOTE_INCLUDE:
+    "Record a voice note or text note for patient care documentation",
+  CREATE_NOTE_DESCRIPTION: "Create a text Note for patient care documentation",
 };

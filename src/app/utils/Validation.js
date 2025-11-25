@@ -91,7 +91,11 @@ export const validationRules = {
     required: TEXT.PHONE_REQUIRED,
   },
 
-  birthDate: {
-    required: TEXT.BOD_REQUIRED,
+  notesAdd: {
+    required: TEXT.NOTE_REQUIRED,
+    minLength: {
+      value: 2,
+      message: TEXT.NOTE_MIN,
+    },
   },
 };
