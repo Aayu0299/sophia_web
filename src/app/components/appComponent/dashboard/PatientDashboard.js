@@ -13,6 +13,7 @@ import CreateNoteModal from "../../modal/CreateNoteModal";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+//------function for patient dashboard--------------
 export default function PatientDashboard() {
   const [isInviteFamilyModalOpen, setIsInviteFamilyModalOpen] = useState(false);
   const [replyModalOpen, setReplyModalOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function PatientDashboard() {
             </div>
           </div>
 
-          <span className="flex items-center gap-3 w-[135px] bg-green-100 text-(--lightGreen) px-4 py-2 rounded-[40px] font-medium text-[12px] sm:text-[16px]">
+          <span className="flex items-center gap-3 w-[135px] bg-(--bgGreen) text-(--lightGreen) px-4 py-2 rounded-[40px] font-medium text-[12px] sm:text-[16px]">
             <Icons.LuUserCheck className="w-5 h-5" /> Admitted
           </span>
         </div>

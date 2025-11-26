@@ -122,3 +122,78 @@ export const doctors = [
     specialty: "Endocrinologist",
   },
 ];
+
+export const patients = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    room: "Room 101-A",
+    admitted: "Jan 13",
+    status: "Admitted",
+    pending: 1,
+    summary:
+      "IMPROVING: Active treatment with Endocrinology. Vitals monitored. Labs tracked. Ready for discharge planning consideration.",
+    avatar: "/user-image.jpg",
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    room: "Room102-B",
+    admitted: "Jan 14",
+    status: "Admitted",
+    pending: 0,
+    summary:
+      "ADMITTED: Initial assessment completed. Internal Medicine evaluation in progress. Treatment plan development underway.",
+    avatar: "/user-image.jpg",
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    room: "Room103-A",
+    admitted: "Jan 14",
+    status: "Admitted",
+    pending: 0,
+    summary:
+      "ADMITTED: Initial assessment completed. Obstetrics evaluation in progress. Treatment plan development underway.",
+    avatar: "/user-image.jpg",
+  },
+];
+
+export const doctorsList = [
+  {
+    name: "Dr. Michael Chen",
+    role: "Cardiologist - Primary",
+    avatar: "/profile.png",
+  },
+  {
+    name: "Dr. Lisa Martinez",
+    role: "Emergency Medicine",
+    avatar: "/user-image.jpg",
+  },
+  {
+    name: "Dr. James Wilson",
+    role: "Internal Medicine",
+    avatar: "/user-image.jpg",
+  },
+];
+
+export const caregiversList = [
+  {
+    name: "Dr. Johnson",
+    role: "Primary Physician",
+    status: "online",
+    avatar: "/user-image.jpg",
+  },
+  {
+    name: "Jennifer M.",
+    role: "Primary Nurse",
+    status: "online",
+    avatar: "/profile.png",
+  },
+  {
+    name: "Dr. Smith",
+    role: "Specialist",
+    status: "offline",
+    avatar: "/profile.png",
+  },
+];

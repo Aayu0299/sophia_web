@@ -158,4 +158,12 @@ export const TEXT = {
   NOTE_INCLUDE:
     "Record a voice note or text note for patient care documentation",
   CREATE_NOTE_DESCRIPTION: "Create a text Note for patient care documentation",
+  CAREGIVER_NOTE: "Add Note for Caregiver",
+  CAREGIVER_NOTE_DESCRIPTION:
+    "Ask a question that you'd like addressed during the next caregiver visit.",
+  CAREGIVER_NOTE_PLACEHOLDER: "What would you like to ask the caregiver?",
+  SACN_PATIENT: "Scan Patient",
+  ADD_PATIENT: "Add Patient",
+  INCLUDE_DISCHARGED_PATIENTS: "Include discharged patients",
+  ADD_SCHEDULE: "Add Schedule",
 };

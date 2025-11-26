@@ -4,6 +4,7 @@ import DashboardSidebar from "../../layout/DashboardSidebar";
 import AuthHeader from "../../layout/AuthHeader";
 import PatientDashboard from "./PatientDashboard";
 import { USER_TYPE } from "@/app/utils/Constant";
+import DoctorDashboard from "./DoctorDashboard";
 
 //--------funtion for dashboard layout--------
 export default function DashboardLayout({ role }) {
@@ -30,7 +31,7 @@ export default function DashboardLayout({ role }) {
           {role === USER_TYPE.PATIENT || role === USER_TYPE.FAMILY ? (
             <PatientDashboard />
           ) : (
-            <div></div>
+            <DoctorDashboard />
           )}
         </div>
       </div>
