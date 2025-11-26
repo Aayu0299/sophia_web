@@ -2,28 +2,41 @@
 
 :root {
   --darkblue: #004396;
+  --mediumBlue: #285b9c;
+  --blueBorder: #00439666;
+  --lightBlue: #8fb8ea;
   --overlay: #00000090;
   --black: #000000;
   --lightBlack: #333333;
   --white: #ffffff;
-  --lightgray: #f1f1f1;
-  --orange: #fa8072;
   --darkgray: #626262;
   --grayshade: #828282;
-  --bordergray: #a5a5a5;
-  --lightblue: #f4faff;
+  --lightGray: #f4f4f4;
   --blueshade: #00439612;
   --blackshade: #252525;
-  --slategray: #c4c4c4;
+  --lightRed: #ec1d241a;
   --redshade: #ec1d24;
-  --graycolor: #dedede;
+  --graycolor: #f5f5f5;
   --grayShadeborder: #bababa;
   --bgColor: #f6f6f6;
-  --iconColor: #797979;
   --sidebarText: #555555;
-  --lightGreen: #11c763;
-  --textGray: #d8d8d8;
-  --borderGray: #d9d9d9;
+  --lightGreen: #11c7631a;
+  --green: #00a249;
+  --darkGreen: #11c763;
+  --borderGray: #e1e1e1;
+  --labelBlack: #222222;
+  --purple: #8a0a9b;
+  --lightGreish: #cacaca;
+  --singleBorder: #e3e3e3;
+  --tbordergray: #d8d8d8;
+  --bgDarkGray: #f8f8f8;
+  --tablebg: #ededed;
+  --fadeBlue: #0043961a;
+  --msgbg: #edf2f7;
+  --msgBorder: #e9e9e9;
+  --bgBlue: #0043960d;
+  --whiteBorder: #d9d9d9;
+  --lightYellow: #fafafa;
 
   /* Add your box shadow variable here */
   --boxshadow-input: 0px 2px 6px 0px #0000002e;

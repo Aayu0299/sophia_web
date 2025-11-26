@@ -1,49 +1,52 @@
 import Image from "next/image";
 import { images } from "@/app/utils/Images";
 import { Icons } from "@/app/utils/Icons";
+import { TEXT } from "@/app/utils/Text";
+import { useSearchParams } from "next/navigation";
 
 //--------funtion for after login header--------
 export default function AuthHeader({ setOpen }) {
+  const headerTitles = {
+    users: "Users",
+    patients: "Patients",
+    family: "Family Member",
+    doctors: "Doctors",
+    caregivers: "Caregivers",
+  };
+  const searchParams = useSearchParams();
+  const currentTab = searchParams.get("tab") || "users";
+
+  const title = headerTitles[currentTab];
+
   return (
-    <header className="w-full bg-white border-b border-(--graycolor)">
-      <div className="mx-auto px-4 lg:px-8 flex items-center justify-between h-16 sm:h-20">
-        <div className="flex items-center gap-3 min-w-0">
+    <header className="w-full bg-white border-b border-(--graycolor) h-16 sm:h-[70px] flex items-center px-6 shadow-sm">
+      {/* PAGE TITLE (LEFT SIDE) */}
+      <p className="text-[20px] sm:text-[24px] font-semibold text-(--blackshade)">
+        {title}
+      </p>
+
+      {/* RIGHT SIDE ITEMS */}
+      <div className="ml-auto flex items-center gap-5">
+        {/* NOTIFICATION BUTTON */}
+        <button className="relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-(--sidebarText) bg-(--bgColor)">
+          <Icons.FaBell className="w-5 h-5 text-(--blackshade)" />
+        </button>
+
+        {/* PROFILE IMAGE */}
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-(--darkblue)">
           <Image
-            src={images.logo}
-            alt="Sophia logo"
-            width={169}
+            src={images.profile}
+            alt="Profile image"
+            width={50}
             height={50}
-            priority
-            className="w-full max-w-[100px] sm:max-w-[169px] h-auto cursor-pointer"
+            className="w-full h-full object-cover cursor-pointer"
           />
-          {/* -------- Mobile Top Bar with Hamburger -------- */}
-          <div className="md:hidden w-full h-14 flex items-center">
-            <button onClick={() => setOpen(true)}>
-              <Icons.CgMenuRound className="w-7 h-7 text-(--redshade)" />
-            </button>
-          </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="sm:w-[50px] sm:h-[50px] w-10 h-10  rounded-full overflow-hidden border border-(--grayShadeborder) ">
-            <Image
-              src={images.profile}
-              alt="Profile image"
-              width={50}
-              height={50}
-              priority
-              className="w-full h-full object-cover cursor-pointer"
-            />
-          </div>
-
-          <button className="relative sm:w-[50px] sm:h-[50px] w-10 h-10 flex items-center justify-center rounded-full border border-(--grayShadeborder) bg-(--bgColor)">
-            <Icons.FaBell className="w-5 h-5 text-(-iconColor)" />
-
-            <span className="absolute -top-1 -right-1 bg-[--redshade] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              3
-            </span>
-          </button>
-        </div>
+        {/* HAMBURGER - MOBILE ONLY */}
+        <button onClick={() => setOpen(true)} className="md:hidden">
+          <Icons.CgMenuRound className="w-7 h-7 text-(--darkblue)" />
+        </button>
       </div>
     </header>
   );

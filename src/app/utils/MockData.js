@@ -1,4 +1,5 @@
 import { ROUTES } from "./Constant";
+import { images } from "./Images";
 import { TEXT } from "./Text";
 
 export const navItems = () => [
@@ -46,7 +47,39 @@ export const genericRoleOptions = [
 ];
 
 export const sidebarNavItems = [
-  { id: 1, link: ROUTES.DASHBOARD, label: TEXT.DASHBOARD },
-  { id: 2, link: "#", label: TEXT.FAMILY_FRIEND_CHAT },
-  { id: 3, link: "#", label: TEXT.SETTINGS },
+  {
+    id: 1,
+    tab: "users",
+    label: TEXT.USERS,
+    activeIcon: images.activeUsers,
+    inactiveIcon: images.inactiveUsers,
+  },
+  {
+    id: 2,
+    tab: "patients",
+    label: TEXT.PATIENTS,
+    activeIcon: images.activePatients,
+    inactiveIcon: images.inactivePatients,
+  },
+  {
+    id: 3,
+    tab: "family",
+    label: TEXT.FAMILY_MEMBER,
+    activeIcon: images.activeFamily,
+    inactiveIcon: images.inactiveFamily,
+  },
+  {
+    id: 4,
+    tab: "doctors",
+    label: TEXT.DOCTORS,
+    activeIcon: images.activeDoctors,
+    inactiveIcon: images.inactiveDoctors,
+  },
+  {
+    id: 5,
+    tab: "caregivers",
+    label: TEXT.CAREGIVERS,
+    activeIcon: images.inactiveCargivers,
+    inactiveIcon: images.inactiveCargivers,
+  },
 ];

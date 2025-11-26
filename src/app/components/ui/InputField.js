@@ -46,7 +46,7 @@ export default function InputField({
       {label && (
         <label
           htmlFor={name}
-          className="font-medium text-[20px] text-(--black) mt-4"
+          className="font-medium text-[18px] text-(--labelBlack) mt-4"
         >
           {label}
         </label>
@@ -76,7 +76,7 @@ export default function InputField({
               e.target.value = e.target.value.replace(/[^0-9]/g, "");
             },
           })}
-          className={`w-full rounded-xl text-[16px] [box-shadow:var(--boxshadow-input)] px-3 h-[60px] outline-none  bg-white placeholder:text-(--grayshade)`}
+          className={`w-full h-12 rounded-sm text-[16px] border-[0.6px] border-(--borderGray) px-3 outline-none  bg-[#F5F5F5] placeholder:text-(--grayshade)`}
           {...(register
             ? register(name, {
                 ...validationRules,
@@ -166,6 +166,51 @@ export const CommonPhoneInput = ({
           {error}
         </p>
       )}
+    </div>
+  );
+};
+
+export const DetailInputField = ({
+  label,
+  type = "text",
+  defaultValue = "",
+  optional = false,
+  icon = null,
+  className = "",
+  name,
+  ...props
+}) => {
+  return (
+    <div>
+      {label && (
+        <label
+          htmlFor={name}
+          className="text-[20px] font-medium text-(--black)"
+        >
+          {label}{" "}
+          {optional && (
+            <span className="text-[#8f8f8f] text-sm">(Optional)</span>
+          )}
+        </label>
+      )}
+
+      <div className="relative mt-1 w-full">
+        {icon && (
+          <div className="absolute left-0 top-1/2 -translate-y-1/2">{icon}</div>
+        )}
+
+        <input
+          type={type}
+          id={name}
+          name={name}
+          defaultValue={defaultValue}
+          className={`w-full border-0 border-b-2 border-[#E8E8E8] focus:outline-none 
+            focus:border-(--darkblue) text-[16px] pb-2 ${
+              icon ? "pl-8" : ""
+            } ${className}`}
+          {...props}
+        />
+      </div>
     </div>
   );
 };

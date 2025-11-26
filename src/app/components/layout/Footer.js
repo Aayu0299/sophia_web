@@ -9,10 +9,10 @@ export default function Footer() {
   const range = `${currentYear}-${nextYear}`;
 
   return (
-    <div className="bg-(--lightgray) ">
-      <div className="section-container p-4 flex justify-between items-center">
+    <div className="bg-(--white) ">
+      <div className="py-[17px] px-[30px] flex justify-between items-center">
         <Image
-          src={images.logo}
+          src={images.whiteLogo}
           alt="Sophia logo"
           layout="responsive"
           priority
