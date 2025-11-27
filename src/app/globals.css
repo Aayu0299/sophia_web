@@ -37,6 +37,9 @@
   --bgRed: #ec1d241a;
   --lightBlue: #0043960f;
   --buttonBorder: #c5c5c5;
+  --blueBoxColor: #0043961a;
+  --borderGrayColor: #e5e5e5;
+  --searchColor: #f7f7f7;
 
   /* Add your box shadow variable here */
   --boxshadow-input: 0px 2px 6px 0px #0000002e;

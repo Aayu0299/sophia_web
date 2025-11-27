@@ -8,7 +8,7 @@ import {
   FaRegQuestionCircle,
   FaReply,
 } from "react-icons/fa";
-import { IoArrowBack, IoScan } from "react-icons/io5";
+import { IoArrowBack, IoScan, IoSearchOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 import { SlCalender } from "react-icons/sl";
@@ -53,4 +53,5 @@ export const Icons = {
   FiMapPin,
   CgNotes,
   PiUsersThreeBold,
+  IoSearchOutline,
 };

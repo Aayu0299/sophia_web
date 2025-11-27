@@ -131,6 +131,7 @@ export const patients = [
     admitted: "Jan 13",
     status: "Admitted",
     pending: 1,
+    count: "3",
     summary:
       "IMPROVING: Active treatment with Endocrinology. Vitals monitored. Labs tracked. Ready for discharge planning consideration.",
     avatar: "/user-image.jpg",
@@ -142,6 +143,7 @@ export const patients = [
     admitted: "Jan 14",
     status: "Admitted",
     pending: 0,
+    count: "1",
     summary:
       "ADMITTED: Initial assessment completed. Internal Medicine evaluation in progress. Treatment plan development underway.",
     avatar: "/user-image.jpg",
@@ -153,6 +155,7 @@ export const patients = [
     admitted: "Jan 14",
     status: "Admitted",
     pending: 0,
+    count: "",
     summary:
       "ADMITTED: Initial assessment completed. Obstetrics evaluation in progress. Treatment plan development underway.",
     avatar: "/user-image.jpg",
@@ -195,5 +198,32 @@ export const caregiversList = [
     role: "Specialist",
     status: "offline",
     avatar: "/profile.png",
+  },
+];
+
+export const filteredDoctorsList = [
+  {
+    id: 1,
+    name: "Dr. Amanda Foster",
+    specialty: "Internal Medicine",
+    phone: "(555) 101-2347",
+  },
+  {
+    id: 2,
+    name: "Dr. Michael Carter",
+    specialty: "Cardiology",
+    phone: "(555) 222-9911",
+  },
+  {
+    id: 3,
+    name: "Dr. Emily Johnson",
+    specialty: "Pediatrics",
+    phone: "(555) 333-8822",
+  },
+  {
+    id: 4,
+    name: "Dr. Robert Williams",
+    specialty: "Dermatology",
+    phone: "(555) 444-7733",
   },
 ];

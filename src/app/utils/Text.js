@@ -166,4 +166,15 @@ export const TEXT = {
   ADD_PATIENT: "Add Patient",
   INCLUDE_DISCHARGED_PATIENTS: "Include discharged patients",
   ADD_SCHEDULE: "Add Schedule",
+  DOCTOR_LIST: "Doctors List",
+  CAREGIVER_LIST: "Caregivers List",
+  VIEW_BUTTON: "View all",
+  NO_PATIENT_FOUND: "No patients found",
+  ADD_DOCTOR: "Add Doctors",
+  MAKE_PRIMARY: "Make Primary",
+  CARE_TEAM: "Care Team",
+  DOCTOR_SELECTION:
+    "Select doctors to add to this patient's care team and chat group.",
+  SEARCH_CARE: "Search care team...",
+  HIDE: "Hide",
 };

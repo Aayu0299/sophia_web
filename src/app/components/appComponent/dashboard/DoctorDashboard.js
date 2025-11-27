@@ -4,10 +4,12 @@ import Button from "../../ui/Button";
 import { Icons } from "@/app/utils/Icons";
 import { TEXT } from "@/app/utils/Text";
 import Image from "next/image";
+import CareTeamModal from "../../modal/CareTeamModal";
 
 //------function for doctor dashboard--------------
 export default function DoctorDashboard() {
   const [includeDischarged, setIncludeDischarged] = useState(false);
+  const [careTeamModalOpen, setCareTeamModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen mt-2">
@@ -51,7 +53,7 @@ export default function DoctorDashboard() {
       <div className="space-y-4 bg-(--boxBgColor) border border-(--borderTextarea) p-4">
         {patients?.length === 0 ? (
           <div className="text-center py-6 text-gray-500 font-medium">
-            No patients found
+            {TEXT.NO_PATIENT_FOUND}
           </div>
         ) : (
           patients?.map((p, index) => (
@@ -85,31 +87,39 @@ export default function DoctorDashboard() {
                         {p.room} • Admitted {p.admitted}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mt-1">
+                      <div className="flex flex-wrap gap-2 mt-1 items-center">
                         <span className="px-2 py-1 font-semibold text-[12px] bg-(--bgGreen) text-(--lightGreen) rounded-md">
                           {p.status}
                         </span>
 
-                        {p.pending > 0 && (
+                        {/* {p.pending > 0 && (
                           <span className="px-2 py-1 font-semibold text-[12px] bg-(--bgRed) text-(--redshade) rounded-md">
                             {p.pending} Pending note
                           </span>
-                        )}
+                        )} */}
+                        <span className="font-semibold text-[12px] sm:text-[14px]">
+                          Dr. Amanda Foster-Primary
+                        </span>
                       </div>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mt-2 lg:mt-0">
-                      <Button className="relative px-3 py-2! font-medium! text-[12px]! lg:text-[16px]! border-[0.5px] border-(--buttonBorder) rounded-[5px] w-[110px]! bg-white! text-black! flex items-center gap-2">
+                      <Button
+                        className="relative px-3 py-2! font-medium! text-[12px]! lg:text-[16px]! border-[0.5px] border-(--buttonBorder) rounded-[5px] w-[110px]! bg-white! text-black! flex items-center gap-2"
+                        onClick={() => setCareTeamModalOpen(true)}
+                      >
                         <Icons.RiStethoscopeLine className="w-5 h-5" />
                         {TEXT.DOCTOR}
                         {/* Count Badge */}
-                        <span
-                          className="absolute -top-1 -right-1 bg-(--redshade) text-white 
+                        {p?.count?.length > 0 && (
+                          <span
+                            className="absolute -top-1 -right-1 bg-(--redshade) text-white 
                    text-xs w-4 h-4 flex items-center justify-center 
                    rounded-full"
-                        >
-                          3
-                        </span>
+                          >
+                            {p.count}
+                          </span>
+                        )}
                       </Button>
                       <Button className="px-3 py-2! font-medium! text-[12px]! lg:text-[16px]! border-[0.5px] border-(--buttonBorder) rounded-[5px] w-[110px]! bg-white! text-black!">
                         <Icons.PiUsersThreeBold className="inline-block mr-2 w-5 h-5 mb-[3px]" />
@@ -118,6 +128,9 @@ export default function DoctorDashboard() {
                       <Button className="py-2! font-medium! text-[12px]! lg:text-[16px]! border-[0.5px] border-(--buttonBorder) rounded-[5px] w-[155px]! bg-white! text-black!">
                         <Icons.RiAddLargeFill className="inline-block mr-2 w-5 h-5 mb-[3px]" />
                         {TEXT.ADD_SCHEDULE}
+                      </Button>
+                      <Button className="py-2! font-medium! text-[12px]! lg:text-[16px]! rounded-[5px] w-[100px]!">
+                        {TEXT.HIDE}
                       </Button>
                     </div>
                   </div>
@@ -133,8 +146,8 @@ export default function DoctorDashboard() {
             </div>
           ))
         )}
-        <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer">
-          VIEW ALL
+        <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer uppercase">
+          {TEXT.VIEW_BUTTON}
         </div>
       </div>
 
@@ -142,7 +155,7 @@ export default function DoctorDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         {/* Doctors */}
         <div>
-          <h3 className="font-medium text-[16px] mb-3">Doctors List</h3>
+          <h3 className="font-medium text-[16px] mb-3">{TEXT.DOCTOR_LIST}</h3>
           <div className="bg-(--boxBgColor) border border-(--borderTextarea) p-4">
             <div className="space-y-3">
               {doctorsList.map((d, idx) => (
@@ -173,15 +186,17 @@ export default function DoctorDashboard() {
                 </div>
               ))}
             </div>
-            <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer">
-              VIEW ALL
+            <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer uppercase">
+              {TEXT.VIEW_BUTTON}
             </div>
           </div>
         </div>
 
         {/* Caregivers */}
         <div>
-          <h3 className="font-medium text-[16px] mb-3">Caregivers List</h3>
+          <h3 className="font-medium text-[16px] mb-3">
+            {TEXT.CAREGIVER_LIST}
+          </h3>
           <div className="bg-(--boxBgColor) border border-(--borderTextarea) p-4">
             <div className="space-y-3">
               {caregiversList.map((c, idx) => (
@@ -217,12 +232,16 @@ export default function DoctorDashboard() {
                 </div>
               ))}
             </div>
-            <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer">
-              VIEW ALL
+            <div className="text-center mt-5 mb-1 text-(--darkblue) font-semibold text-[14px] sm:text-[18px] cursor-pointer uppercase">
+              {TEXT.VIEW_BUTTON}
             </div>
           </div>
         </div>
       </div>
+      <CareTeamModal
+        open={careTeamModalOpen}
+        onClose={() => setCareTeamModalOpen(false)}
+      />
     </div>
   );
 }
